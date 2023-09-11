@@ -1,0 +1,20 @@
+package tut01;
+
+public class PrintEx2 {
+
+	public static void main(String[] args) {
+		//char : 문자, '', 2byte, ASCII, 숫자로 형변환 가능(타입 캐스팅)
+		char c ='k';
+		System.out.println(c);
+		System.out.println((int)c);
+		System.out.println((char)97);
+		
+	
+		
+		//boolean : true, false(따옴표 사용하면 x)
+		//if와 사용 
+		
+		
+	}
+
+}
