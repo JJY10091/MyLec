@@ -24,6 +24,7 @@ public class AssignEx {
 		
 		System.out.println(num);
 		
+		//1 ~ 10 : 합계
 		
 	}
 
