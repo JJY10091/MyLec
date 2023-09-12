@@ -148,8 +148,6 @@ String str = null; (참조형)
 이메일주소 : 문자열
 
 
-
-
  (2)참조형(Reference Type) : 반복문 같이 사용.. (for, 향상된for)  cf)forEach
     - 첫글자가 대문자로 시작.. ex) Integer, Double, Float, Char, Boolean
 			      객체(Member)
@@ -176,44 +174,4 @@ AssignEx.java
      setter() - 값을 저장할 때
 
 => 추가적인 동작이 필요할 때는 메소드 생성 후 사용
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
