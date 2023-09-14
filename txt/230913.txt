@@ -1,0 +1,115 @@
+integer.parseint
+
+1. html -> input
+   Scanner (web에서는 사용 x) : 숨겨져 -> import
+   입력을 받아서 처리
+   System.in......   
+
+   printf : System.out......
+
+   VarEx.java
+
+
+ command = 터미널(서버) : 값을 입력할 수 있는 곳
+
+ScannerEx.java
+
+//Scanner(객체) : 값을 입력 받아서 처리 + System.in 같이 사용 
+                    -> Spring 할 떄 잘 사용하지는않음
+//객체는 초기화해야함(생성자 초기화) new를 사용
+//문자열 입력 받아서 printf()로 화면에 출력
+//java.util에 숨어있는 객체이기 때문에 import해야함
+//Scanner는 자주 사용하는기능이 아니라 java.util에 숨어있음
+
+Scanner sc = new Scanner(System.in);
+sc.next : 문자열을 입력하기 위한 메소드
+
+ScannerEx2.java
+
+형변환
+1. 문자열 -> 숫자로
+2. 숫자 -> 문자열
+3. Scanner -> 형변환
+
+---------------------------------------------------------
+
+제어문
+ContEx.java (Control Ex)
+
+32
+
+
+ContEx2.java
+
+&&(앤퍼센트), ||(파이프)
+score >= 91 && socre <= 100
+
+논리연산자 + 제어문
+
+학점 91 ~ 100 A등급
+81 ~ 90 B등급
+71 ~ 80 C등급
+나머지는 F등급으로 표시하시오
+
+
+==============================
+값 : 정수, 문자, 문자열 -> 대소 비교 불가, 비교연산자 사용할 수 없다.
+switch(값) ~ case ~ break ~ default
+
+ContEx3.java
+
+CRUD => Create Read Update Delete : 웹에서 많이 씀 
+
+
+ContEx4.java
+
+//임의의 정수를 입력 받아서 홀수, 짝수를 표시하시오
+//입력은 문자로 입력 받아서 정수로 변환하여 사용하시오
+//switch
+//입력 화면은 1 이면 홀수,짝수 결과, 2 프로그램 종료
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
