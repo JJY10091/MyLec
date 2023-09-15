@@ -21,5 +21,6 @@ public class ScannerEx {
 		//System.out.println("입력한 문자열 : "+ str);
 		
 		System.out.println(String.format("출력할 문자열은 %s입니다.",str));
+		sc.close();
 	}
 }
