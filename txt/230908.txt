@@ -2,7 +2,7 @@
 
  - 절차지향 : ~~~~제어문까지는 ex) C
 
- - 객체지향 : OOP(Object orient project) ec) C++, Java, C#(unity)
+ - 객체지향 : OOP(Object orient project) ex) C++, Java, C#(unity)
    - 객체, 상속
    단점) 초반 설계할 때 어렵다	장점) 추가, 유지보수는 편하다
           				       보안에 조금 더 이점이있다 
