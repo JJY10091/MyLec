@@ -1,0 +1,97 @@
+http://st.koreaedugroup.com/2019/login.asp
+
+전역변수, static -> 서로 공유 하려고 
+
+ArrayList
+
+동적배열
+Collections
+    부모객체 -> 
+1. List 순서 : ArrayList, Vector -> index번호로 값 찾음
+2. Map : 순서 x : (Web에서) HashMap -> 이름으로 값을 찾음
+
+메소드를 사용해서 입력 출력
+	arr[i] = 100
+	list.add(100)
+	list.get(i)
+	list.remove();
+
+부모객체<객체타입> 별명 = new 자식객체<객체타입>() 
+//부모객체타입을 입력하면 자식 객체타입은 생략 가능
+
+List00 - 프로젝트
+
+-------------------
+list02 패키지
+
+<쇼핑몰>
+객체 : Item.java(상품),        Seller.java(판매자)
+동작 : 
+메인
+판매자 아이디, 판매자 이름, : 상품명, 상품가격, 재고 : 출력
+1. 생성자 : 회원 등록 + 배열도 생성
+2. 메소드를 이용해서 상품 등록
+
+ShopEx.java - 실행
+
+
+   
+---------------------------------------------------
+
+1. 회원가입 : Member.java, MemberDao.java, MemberEx.java
+입력, 출력, 삭제, 검색
+
+회원번호, 회원명 : 기본키(절대 중복 x) 
+ERD : primary key(pk-중복 안되는 값) - Foreign key
+join, erd, pk fk
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
