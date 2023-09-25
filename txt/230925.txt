@@ -1,0 +1,145 @@
+List : 순서-중복값 허용  기본적으로 10개 생성
+Set : 중복값 허용 x    	     16개 생성
+Map : 중복키 허용 x	Json	     16개
+
+forEach
+
+시간 1/1000초 
+
+file입출력 : 변환 -> 1.hwp 1.hwp + uuid, date를 첨부하여 중복이 안되도록 구분함
+	             2023-09-25 / 21421234.hwp 
+static, singleton 
+
+
+
+java-채팅,네트워크=>따로
+
+-------------------------------------------------
+list05
+
+Member.java MemberDao.java MemberEx.java
+(필드)	     (동작)		(파일실행)
+
+회원정보를 출력하시오
+회원아이디 : 0000, 회원비밀번호 : 0000
+     String                 String
+	  생성자
+
+
+List<Member>
+
+List : 줄
+
+---------------------------------------------------
+자식 -> 부모
+List -> ArrayList
+add, remove
+
+Set -> HashSet : 중복된 값 허용 x
+add, remove
+
+setEx01 -> SetEx01.java
+	 SetEx02.java
+	 SetEx03.java
+
+Map -> HashMap : 중복된 값은 허용하지만 중복된 키 허용x
+put
+
+
+SetEx04.java -> main
+Register.java -> 객체
+RegisterDao.java -> 
+
+Map
+<userid, "koreait">
+<k    ,	v>
+<key,     value>
+
+-> java형식
+
+=>javascript형식
+
+
+num = 100
+Object obj = num; (숫자, 실수 ,문자열, 객체 등 사용가능)
+
+
+mapEx
+MapEx01.java
+MapEx02.java
+---------------------------------
+공공데이터포털
+data.go.kr
+---------------------------------
+
+
+MapEx02.java
+----------------------------------
+Member.java
+MemberDao.java
+MemberEx.java
+
+
+Map : 순서가 없고(반복문X) , 배열명.put() >> json과 비슷함
+		비교
+List : 줄 + Member 칸 => 순서O 배열명.get(i) (반복문O) , 배열명.add()
+	
+홍길동, 1234 => List<Member>
+홍길동, 1234 => List<Member>
+홍길동, 1234 => List<Member>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
