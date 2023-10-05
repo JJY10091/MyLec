@@ -1,0 +1,11 @@
+CRUD 작업
+
+
+1. 테이블 작업
+2. jdbc
+   -프로젝트 생성 : jdbcPrj03 -> JDBCPrj03.java
+   -드라이브 등록
+
+SELECT 	           		JDBCPrj04.java
+
+UPDATE			JDBCPrj05.java

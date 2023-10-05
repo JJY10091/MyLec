@@ -1,0 +1,30 @@
+CRUD 작업
+
+
+1. 테이블 작업
+2. jdbc
+   -프로젝트 생성 : jdbcPrj03 -> JDBCPrj03.java
+   -드라이브 등록
+
+SELECT 	           		JDBCPrj04.java
+
+UPDATE			JDBCPrj05.java
+
+
+------------------------------------------------------
+
+jdbcPrj04 -> JDBCPrj04.java
+
+mysql + jdbc
+db : shop
+table : items
+상품번호 : int, not null, pk
+상품이름 : not null, 문자열
+상풍가격 : not null, 숫자
+상품재고 : not null, 숫자
+상품등록일 : not null, 날짜시간
+
+
+
+Items.java
+ItemsEx.java
