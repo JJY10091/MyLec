@@ -1,0 +1,145 @@
+jdk(개발용) + jre(실행용) : runtime, (실행만 한다 - jre로만 실행가능)
+
+SDK-Standard Developer Kit
+
+
+
+자바(로컬) : 컴파일언어 (강형 타입), 경우에 따라 하이브리드 언어
+실행 : javac 클래스이름.java : 컴파일 ( 컴퓨터(JVM)가 읽을 수 있도록 -> 클래스이름.class -> java 클래스이름(실행
+                                            Compile                                                                        Runtime
+전체를 변환(.class)하고 실행
+vs
+서버 : 여러 사람이.. 
+웹 : 인터프리터 언어
+
+=> 컴파일에서 생기는 에러 , 런타임시 생기는 오류
+
+
+예외 : 문제가 생기면 적절하게 개발자가 조정할 수 o 
+
+에러 : 개발자 조정할 수 x => JVM
+-----------------------
+exception
+Exception01.java
+* 예외
+Throwable(최상위 클래스)   
+ - Exception : 컴파일 단계
+   1. ClassNotFoundException : Class.forName(디비 또는 .. 등록할 떄);
+   2. IOException : 입출력
+   3. FileNotFoundException : 파일이 없는 경우
+   4. InterruptException : 메모리나 운영체제가 쓰레드 순서를 못찾을 때
+   5. CloneNotSupportException : clone객체 사용 할 때
+
+ - Runtime Exception : 실행 단위
+   1. 10/0 : ArithmeticException : 나누기 예외
+   2. ArrayIndexOutOfBoundsException
+   3. NullPointerException
+
+Exception02.java
+
+-------------------
+사용자 아이디 체크( exception)
+Exception 상속 받아서 생성자를 이용해서 예외 클래스 작성
+
+UseridCheck.java
+
+아이디 체크
+1. 빈값 체크
+2. 길이 짧은
+3. 길이 긴
+4. 정상적인
+-----------------------
+LoginEx.java
+
+
+
+---------------------------------
+HTML
+
+
+tut05
+01_ex.html
+ - css
+ - js
+ - images
+
+배경색 설정 후 
+ - 인라인 : a, form, table, img, span
+ - 블록 : 
+
+
+02_ex.html
+reset.css
+
+03_ex.html
+ul li > block 임
+ol li
+메뉴
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -134,7 +134,7 @@ Arithmetric Operator
     double b = 0.0;
     boolean c = false;
 
-String str = ""'; (기본형)
+String str = ""; (기본형)
 String 기본형, 참조형
 String str = null; (참조형)
 
