@@ -1,0 +1,125 @@
+인터페이스(생성자 만들 수 x => new x) -> 람다식
+
+Java : 객체지향
+Lamda : 객체지향 -> 함수지향도 사용 가능 (Javascript 익명함수)   (람다식)
+
+Java : public String str(){}
+
+javascript : 1. function Str() {} >> 최근 방식  2. function(){}   3. ()=>{}
+
+람다식
+1. 익명함수 : 이름없이 사용 (1번만 사용할 때 사용)
+              -다른 메소드 안에서 사용(내부함수 라고 함)
+2. 인터페이스 사용해서 구현(본체 x, {} x)
+3. 생성자 x
+4. 인터페이스에서 이름만 빌려 쓰고 내용은 별도로 작성
+
+let result = function() {}
+let result = () => {}
+
+lamda > prj
+
+람다식 기본
+LamdaEx.java
+
+화면 표시
+LamdaEx2.java
+
+return값 출력
+LamdaEx3.java
+
+두 변수 합
+LamdaEx4.java
+
+대소비교
+LamdaEx5.java
+
+문자열 연결 : +
+concat(연결1, 연결2, 연결자)
+          1234    4567     "-"      -> 1234-4567
+LamdaEx6.java
+
+**인터페이스 왜쓰지
+
+
+----------------------------------------------------
+HTML
+
+ul li
+ol li
+dl dt
+
+05_ex.html
+
+----------------------------------------------
+Table
+줄row 칸cols
+
+tut06
+01_tbl.html
+ - css
+ - images
+ - js
+
+
+table
+        table   
+            thead
+                tr 
+                    td  
+            tbody
+                tr
+                    td
+            tfoot
+                tr
+                    td
+
+
+tr은 줄 td는 칸
+td 대신 th 쓰면 진하고 가운데 정렬. 소제목이라서?
+
+strong 
+b
+차이 > strong은 자동읽기가 인식?
+
+--------------------------------------------------------------------
+colspan 가로 합치기
+rowspan 세로 합치기
+
+3줄3칸
+
+
+02_tbl.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
