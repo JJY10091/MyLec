@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            padding: 100px;
+        }
+
+        a {
+            color:#333;
+            text-decoration: none;
+            
+        }
+
+        ul li {
+            background-color: #db8c8c;
+            padding : 4px 8px;
+        }
+
+        ul li:hover {
+            background-color: red;
+            transition: 0.8s;
+            
+        }
+
+        ul li a:hover {
+            color: #fff;
+            transition: 0.5s;
+        }
+
+        ul li a {
+        /*             
+            에뉴 글자 크기는 보통 14px
+            단 유닐리티 메뉴는 12px 
+        */
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        ul li, 
+        ol li, 
+        dl dt {
+            list-style: none;
+        }
+
+
+        /* flex : 반응형 사이트 : 1개 도메인(주소)로 여러 디바이스에서 보이도록.반응형사이트가 무조건 좋은건 아님 */
+        /*         
+        메뉴 만드는 방법 : 3가지
+        1. display : flex; => 부모에 flex 설정
+        2. float : left; => 자식에 float => 오류 => 오류제거?
+        3. display: inline-block; => 자식에 inline-block
+        4. 인라인 타입 : a, span 으로 : 넓이 높이, 여백 지정에 문제 생길 수도
+
+        flex가 제일 편하다고 함
+        */
+
+        ul { 
+            /* flex : 부모에 */
+            display: flex;
+
+            /* 위치 설정 */
+            /* justify-content: center; */
+            /* justify-content: right; */
+            justify-content: space-between; /*가장 많이 씀*/
+            /* justify-content: space-around; */
+
+        }
+
+        ol li {
+            float: left;
+            /* text-align: center; 안되노  */
+            /* background-color: aliceblue; 이것도 안되노 */
+
+        }
+
+        dl dt {
+            display: inline-block;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- ul은 단추형 -->
+    <ul> 
+        <li><a href="">Menu1</a></li>
+        <li><a href="">Menu2</a></li>
+        <li><a href="">Menu3</a></li>
+    </ul>
+    <br />
+    <br />
+     <!-- ol은 순서 1, 2, 3 -->
+    <ol>
+        <li><a href="">Menu1</a></li>
+        <li><a href="">Menu2</a></li>
+        <li><a href="">Menu3</a></li>
+    </ol>
+    <br />
+    <br />
+
+    <!-- dl은 아무것도 없네 -->
+    <dl>
+        <dt><a href="">Menu1</a></dt>
+        <dt><a href="">Menu2</a></dt>
+        <dt><a href="">Menu3</a></dt>
+    </dl>
+</body>
+</html>
