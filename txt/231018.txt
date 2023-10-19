@@ -1,0 +1,102 @@
+1. thread
+2. 내일 : 필기 실기
+3. db + html, css, js
+4. 11월 말 : db + web + spring
+
+
+
+
+thread
+ThreadEx.java
+
+--------------------------
+ThreadEx1.java
+
+1. extends Thread 상속
+2. implementes Runnable > Thread 객체에 주입해서 사용 
+-> 오버라이드 run(); - 동작
+-> start(); 스레드가 동작
+
+ThreadEx2.java -> 동시성
+---------------------------
+ThreadEx3.java
+
+------------------------------
+ThreadEx4.java (내부함수)
+
+
+=======================================
+HTML
+
+A1     fontawesome cdn
+폰트,     폰트어썸(아이콘)
+기본스타일 제거
+
+(사진) unsplash.com -> row픽셀
+
+03_ex.html
+
+<사이트 구성>
+header > nav
+main > section > article
+main > section > article
+main > section > article
+footer > copyright
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
