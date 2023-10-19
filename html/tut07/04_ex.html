@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인/회원가입</title>
+    <link rel="stylesheet" href="css/reset.css">
+
+    <style>
+        body {
+            background-color: #ccc;
+
+        }
+
+        /* position 페이지 위를 떠서 이동 : 이미지등 위로 덮어쓰기 가능*/
+        /* 상자를 화면 정중앙에 배치할 때 쓰는 tip */
+        main {
+            /* 화면 왼쪽을 기준점 잡는다 */
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /* 왼쪽상단 모서리가 가운데임 */
+
+            /* 만드는 상자의 반만큼 왼쪽으로, 상자의 반만큼 위로 이동 >> 상자중심이 화면가운데로*/
+            transform: translate(-50%, -50%);
+
+            /* 공식처럼 그냥 외워라 */
+        }
+
+        .login-box {
+
+            width: 350px;
+            height: 200px;
+            background-color: #fff;
+
+            /* 박스에 그림자 넣기 */
+            box-shadow: 0 0 5px #000;
+
+            display: flex;
+            justify-content: space-between;
+
+            padding: 0 20px;
+        }
+
+        .login-box a {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="login-box">
+            <p><a href="login.html">로그인</a></p>
+            <p><a href="register.html">회원가입</a></p>
+        </div>
+    </main>
+
+</body>
+
+</html>
