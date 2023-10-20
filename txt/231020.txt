@@ -1,0 +1,202 @@
+
+1. Mysql 데이터베이스
+mysql.com - downloads 
+
+(1) CUI : cmd - 권장
+(2) GUI(그래픽) : Workbench
+
+서버(관리자 1명 : root) 
+-> 사용할 수 있는 아이디인지 확인 (mysql 데이터베이스에 사용자가 저장되어있음.)
+-> 사용자 계정(root가 생성) : 아이디, 비밀번호
+-> 관리자가 데이터베이스 생성(db이름은  사용자아이디)
+-> 명령어를 이용해서 생성, 권한설정, 새로고침
+
+(1) CUI (root계정으로 사용자 계정만들기)
+  - koreait으로 db에 계정 생성하기  (koreait/1234)
+  - 사용할수 있는지 확인 > show databases;
+  - koreait database 생성 > create database koreait;
+  - 계정 생성하기
+cf)    DDL 
+       DML 
+       DCL : grant, reboke (권한 부여, 삭제)
+     > 	
+
+/********************
+create user 아이디@'localhost' identified by '비밀번호';
+GRANT ALL privileges ON 사용할DB이름.* TO 아이디@'localhost with grant option;
+flush privileges; 
+
+create user koreait@'localhost' identified by '1234';
+GRANT ALL privileges ON koreait TO koreait@'localhost' with grant option;
+alter user koreait@'%' identified with mysql_native_password by '1234';
+flush privileges; 
+***********************/ 
+(2) GUI로 계정만들기
+
+
+다시 사용자계정 shopdb 비밀번호 1234 
+shopdb/1234
+>
+create database shopdb;
+Create USER shopdb@'%' identified by'1234';
+GRANT ALL ON shopdb.* TO shopdb@'%' with grant option;
+flush privileges;
+
+사용자계정 접속 : 만든 데이터베이스 접근.
+
+use shopdb;
+
+create table items(
+item_id int,
+item_name varchar(100)
+);
+
+create table cart(
+cart_id int,
+cart_item_name varchar(20)
+);
+
+ERD로 만든 DB보기
+
+Db Definition Laguage
+DDL : Definition : 정의어 => CREATE, DROP, ALTER(변경)
+
+Rename : 테이름 이름 바꿀떄
+tbl_board => tbl_article
+tbl_config => tbl_env (workbench)
+
+RENAME TABLE tbl_board TO tbl_article;
+> (테이블명 변경)
+
+ALTER TABLE tbl_article ADD tbl_article_date datetime;
+> (tbl_article_date 추가)
+
+ALTER TABLE tbl_article MODIFY COLUMN tbl_board_name varchar(50);
+> (컬럼타입수정)
+
+ALTER TABLE tbl_article RENAME COLUMN tbl_board_name TO tbl_article_name;
+> (컬럼명변경)
+
+ALTER TABLE tbl_article ADD tbl_article_content varchar(100) AFTER tbl_article_name;
+> (컬럼추가 끼워넣기)
+
+ALTER TABLE tbl_article DROP COLUMN tbl_article_content;
+> (컬럼제거)
+
+SELECT item_name FROM items WHERE item_name IS NULL;
+SELECT item_name FROM items WHERE item_name IS NOT NULL;
+
+===========================================================
+HTML
+
+05_ex.html
+
+usemap을 이용하여 이미지 분할 링크하기
+
+<
+usemap #이름 
+map 이름 - 모양 좌표 주소 
+>
+
+좌표를 이용함 > 그림판으로 이미지열어서 좌표 얻을 수 있음
+이름 지어줄떄 #이름 
+이름 불러올때 그냥 이름
+
+----------------------------------------------------
+**** 중요함
+폼
+ tut08
+ -01_ex_form.html
+
+<form method="" action="" enctype="multipart/form-data" id="" class=""></form>
+method 
+
+    <!--     
+    1. method => 전송 방식 (post, get)
+        (1) get : 속도 우선, 보안 x, 길이 제한
+        (2) post : 안전하게 데이터 처리, 길이 제한 
+
+    2. 정보 입력 => 어디 페이지로 이동해서 처리를 할 건지..
+    3. encType : 첨부파일
+    4. id : 일반적으로 자바스크립터 작업
+    5. class : 자바스크립트 또는 디자인 작업
+
+    button 사용해서 구현
+    button
+    1. type = submit  ( Enter, click )엔터로 완료
+    2. type = button  ( click )
+    -->
+
+
+<form name="frm">
+<!-- 배열로 처리 -->
+            <li> <label>성별</label>
+                <input type="radio" name="gender" class="gender"> 남자
+                <input type="radio" name="gender" class="gender" checked> 여자
+            </li>
+            <li> <label>취미</label>
+                <input type="checkbox" name="hobby" class="gender" checked> 등산
+                <input type="checkbox" name="hobby" class="gender"> 낚시
+                <input type="checkbox" name="hobby" class="gender" checked> 독서
+            </li>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
