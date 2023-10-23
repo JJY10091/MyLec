@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form input</title>
+    <style>
+       /* input 내부의 설명을 꾸미기 위해 :: 사용 */
+        input::placeholder {
+            color: red;
+            font-style: italic;
+        }
+        
+        input[type='submit']{
+            background-color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- input의 옵션들은 form 내부에서 사용가능 -->
+    <form>
+        <ul>
+            <li>
+                <label>검색어</label>
+                <!-- value로 초기값 지정 -->
+                <!-- <input required placeholder="검색어를 입력하세요" maxlength="10" type="text" name="search" class="search" id="search" value="koreait"> -->
+                <input type="text" name="search" class="search" id="search">
+
+            </li>
+        </ul>
+        <input class="btn" type="submit" value="검색"><br />
+        <!-- <button type="submit">SEARCH</button> -->
+    </form>
+
+    <script>
+        // type name class id 로 찾기
+      
+    /*
+        function check(){
+            // 똑같은 기능 4가지 모두 알고있어야함 
+            // 1. alert(document.querySelector("input[type=text]").value);
+            // 2. alert(document.querySelector("input[name=search]").value);
+            
+            //페이지에 동일한 이름 있어도 사용 o
+            // 3. alert(document.querySelector(".search").value);
+            
+            // 페이지에 동일한 이름 있으면 x
+               4. alert(document.querySelector("#search").value);
+        }
+
+        document.querySelector(".btn").onclick = check;
+    */
+
+    // 변수하나 만들어 위에 코드와 같은 작동을 하게
+    
+        let search = document.querySelector("#search");
+        let btn = document.querySelector(".btn");
+
+        // btn.onclick = function () {
+        //     alert(search.value);
+        // }
+
+        //익명함수로 사용 
+        btn.onclick = () => {
+            alert(search.value);
+        }
+
+    </script>
+
+</body>
+</html>

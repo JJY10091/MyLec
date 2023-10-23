@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form 예제</title>
+    <link rel="stylesheet" href="/tut06/css/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+
+
+    <style>
+        body {
+            background-color: #ccc;
+        }
+
+        form {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px 20px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 20px;
+
+            transform: translate(-50%, -50%);
+
+                    /* 방향 번짐 진하게 */
+            box-shadow: 0 0 10px 2px #9c9d9b;
+
+        }
+        input {
+            border: 0;
+            border: 1px solid #e7e7e7;
+            padding: 6px 4px;
+            font-size: 14px;
+
+        }
+        input:focus {
+            background-color: #eae9f3;
+            font-size: 14px;
+        }
+
+        ul li * {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!--     
+    1. method => 전송 방식 (post, get)
+        (1) get : 속도 우선, 보안 x, 길이 제한
+        (2) post : 안전하게 데이터 처리, 길이 제한 
+
+    2. 정보 입력 => 어디 페이지로 이동해서 처리를 할 건지..
+    3. encType : 첨부파일
+    4. id : 일반적으로 자바스크립터 작업
+    5. class : 자바스크립트 또는 디자인 작업
+
+    button 사용해서 구현
+    button
+    1. type = submit  ( Enter, click )엔터로 완료
+    2. type = button  ( click )
+    -->
+    <form name="frm" method="post">
+        <h3>로그인</h3>
+        <ul>
+
+            <li> <label> <strong>아이디</strong></label>
+                <input placeholder="아이디를 입력하세요" type="text" name="userid" class="userid" required>
+            </li>
+            <li><label><strong>비밀번호</strong></label>
+                <input placeholder="비밀번호를 입력하세요" type="password" name="passwd" class="passwd" required>
+            </li>
+            <li><label><strong>비밀번호 확인</strong></label>
+                <input placeholder="비밀번호 확인을 입력하세요" type="password" name="passwd2" class="passwd2" required>
+            </li>
+
+            <li>
+                <input type="submit" value="로그인" class="btn">
+            </li>
+        </ul>
+    </form>
+
+    <!-- <script>
+
+        function frmCheck(e) {
+            //버튼 또는 a가 가지고 있는 이동하려는 기본 속성을 없애는 태그
+            e.preventDefault();
+
+            //alert("버튼이 눌러졌습니다.");
+
+            //userid input의 값을 가져 오기
+            //document.querySelector(".userid").value;
+
+            let userid = document.querySelector(".userid");
+            let passwd = document.querySelector(".passwd");
+            let passwd2 = document.querySelector(".passwd2");
+            if( userid.value == "" ){
+                alert("아이디를 입력하세요.");
+                userid.focus();
+                return false;
+            }
+
+            if( !passwd.value ) {
+                alert("비밀번호를 입력하세요")
+                passwd.focus();
+                return false;
+            }
+
+            if( passwd2.value != passwd.value ) {
+                alert("비밀번호가 일치하지 않습니다. 확인하세요")
+                passwd.value ="";
+                passwd2.value ="";
+                passwd.focus();
+                return false;
+            }
+
+        }
+
+        document.querySelector(".btn").onclick = frmCheck;
+
+    </script> -->
+</body>
+
+</html>
