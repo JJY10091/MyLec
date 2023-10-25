@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지와 하이퍼링크</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+
+    <style>
+        section {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sec-content {
+            display: flex;
+
+            /*  wrap : 내가 지정한 px만큼 채운다음 줄바꿈하여 나머지 채움 : 1200px => 300*4  */
+            flex-wrap: wrap;
+
+            /* > .img box에 margin을 두어도 괜찮  */
+            justify-content: space-between;
+
+        }
+
+        .img-box {
+            width: 295px;
+
+            /* flex에서 사용하는 여백 주는 태그 */
+            gap: 5px;
+            border: 1px solid #ccc;
+            padding: 4px;
+
+            /* margin-right: 10px;
+            margin-bottom: 10px; */
+
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .img-box img:hover {
+            transform: scale(1.1);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .img-box img {
+            /*마우스 뗄때 변화속도*/
+            transition: 0.3s;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <main>
+        <section>
+            <article class="sec-title">
+                <h1>제목</h1>
+                <p>설명글</p>
+            </article>
+            <article class="sec-content">
+                <div class="img-box">
+                    <img src="images/img1.jpg" alt="">
+                </div>
+                <div class="img-box">
+                    <img src="images/img2.jpg" alt="">
+                </div>
+                <div class="img-box">
+                    <img src="images/img3.jpg" alt="">
+                </div>
+                <div class="img-box">
+                    <img src="images/img4.jpg" alt="">
+                </div>
+
+                <div class="img-box">
+                    <img src="images/img1.jpg" alt="">
+                </div>
+                <div class="img-box">
+                    <img src="images/img2.jpg" alt="">
+                </div>
+                <div class="img-box">
+                    <img src="images/img3.jpg" alt="">
+                </div>
+                <div class="img-box">
+                    <img src="images/img4.jpg" alt="">
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
