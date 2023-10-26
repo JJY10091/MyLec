@@ -1,0 +1,44 @@
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    /* 배경 처리  기본옵션 */
+    background-image: url(../images/bg.jpg);
+    width: 1920px;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.content-wrap {
+    width: 1200px;
+    margin: 0 auto;
+
+    display: flex;
+    /* justify-content: center; */
+    
+    /* flex에서 세로 정렬 할 때는 높이 값이 있어야함 */
+    /* 세로 정렬을 위한 자식 사각형(block타입)은 하나만 있어야함 > 여러개의 내용물을 하나로 취급하기위해 */
+
+    height: 500px;
+    align-items: center;
+    
+}
+
+.content {
+    background-color: rgba(255,255,255, .7);
+    width: 600px;
+    padding: 20px 10px;
+}
+
+.content h1 {
+    font-size: 40px;
+    color:  blue;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
