@@ -1,0 +1,345 @@
+-------------------------DB--------------------------------
+pk,  fk
+정규화 
+
+1. Group by
+
+부서별 직원 수를 출력하시오
+
+use grpdb;
+
+create table company (
+com_id int not null auto_increment,
+com_buseo varchar(10) not null,
+com_name varchar(10),
+primary key(com_id)
+);
+
+INSERT INTO company VALUES(NULL, '인사과', '홍길동');
+INSERT INTO company VALUES(NULL, '인사과', '김영희');
+
+INSERT INTO company VALUES(NULL, '자재과', '이영희');
+
+INSERT INTO company VALUES(NULL, '임원실', '김대표');
+INSERT INTO company VALUES(NULL, '임원실', '장상무');
+
+INSERT INTO company VALUES(NULL, '비서실', '너비서');
+
+SELECT * FROM company;
+
+SELECT COUNT(*) AS '전체 사원수' FROM company;
+
+SELECT COUNT(com_buseo) AS '전체 부서수' FROM company;
+
+SELECT distinct(com_buseo) AS '중복제거 부서수' FROM company;
+
+SELECT COUNT( distinct(com_buseo) ) AS '부서수' FROM company;
+
+예시 >인사과(3), 자재과(10), 임원실(2), 비서실(5)로 부서별 직원 수를 출력하시오.
+
+SELECT com_buseo, count(com_name) FROM company; >> 사용할 수 없다 > group by 사용해라
+
+SELECT com_buseo, count(com_name) FROM company
+GROUP BY com_buseo
+ORDER BY com_buseo ASC;
+
+단, 직원수가 2명 이상인 부서만 출력하시오.
+SELECT com_buseo, count(com_name) FROM company
+GROUP BY com_buseo
+HAVING count(com_name) >= 2
+ORDER BY com_buseo DESC;
+
+인사과 뽑아내기
+SELECT  com_buseo, count(com_name) AS CNT FROM company
+GROUP BY com_buseo
+HAVING count(com_name) >= 2
+ORDER BY com_buseo DESC
+LIMIT 1, 1;
+
+
+---------------------------------------------------------------------
+mysql 내장 함수
+
+create table scores(
+family char(1),
+name varchar(10),
+passwd varchar(10),
+score int,
+birth date
+);
+
+insert into scores values('H','홍길동', '1234', 80.3333, '1990-01-01');
+insert into scores values('K', '김철수', '0000', 95.7777, '2000-01-01');
+insert into scores values('', 'null', 'null', 0, '2010-01-01');
+
+점수가 0보다 크면 응시 아니면 미응시로 출력하시오.
+
+select name, if(score > 0, '응시', '미응시') as '응시/미응시', score from scores;
+
+1990년대 생은 '90s' 2000년대 생은 '00s' 2010년대 생은 '10s'로 표시하시오
+select if(birth >= '2000-01-01', '90s', '00s') as 'Generation' from scores;
+
+
+family 컬럼의 값을 대문자 : Upper(), Lower()
+select upper(family) from scores;
+
+trim() 좌우공백제거 ( 사이 공백제거 x)
+insert into scores values('c', '코리아', ' 1234&', 99, '2023-01-01');
+
+select passwd from scores;
+select trim(passwd) from scores;
+
+비밀번호 공백, &제거하기
+replace(컬럼명, '원본', '바꿀내용');
+
+select passwd from scores;
+select replace(trim(passwd), '&', ' ') from scores;
+
+
+create table tel(
+tel1 char(3),
+tel2 char(4),
+tel3 char(4)
+);
+
+insert into tel values('010', '1234', '6789');
+insert into tel values('011', '5555', '5432');
+
+이어붙이기(concat), 짤라내기(left, right) 바꾸기(6789->****)
+
+select * from tel;
+select concat(tel1, '-', tel2, '-', tel3) from tel;
+
+통신사 번호
+왼쪽 부터 3글자
+select left(tel1, 3) from tel;
+select left(concat(tel1, '-', tel2, '-', tel3), 3) from tel;
+select left(trim(concat(tel1, '-', tel2, '-', tel3)), 3) as '통신사'from tel;
+
+
+휴대폰번호 끝자리만 ****
+
+select concat(tel1, tel2, tel3) from tel;
+select right(concat(tel1, tel2, tel3), 4) from tel;
+select trim( right(concat(tel1, tel2, tel3), 4)) from tel;
+
+
+변경해서 출력하기
+select insert('5678', 1, 4, '****');  : insert into와 다른거임
+
+select 
+insert(
+trim( right(concat(tel1, tel2, tel3), 4))
+, 1, 4, '****') 
+from tel;
+
+---------------------------------------------------------------------------
+create table timer(
+time1 datetime,
+time2 datetime,
+time3 datetime,
+time4 datetime
+);
+
+insert into timer values(now(), sysdate(), curdate(), current_timestamp());
+
+select * from timer;
+select time1 from timer;
+
+년도 YEAR()
+월 MONTH()
+일 DAY()
+
+select YEAR(time1), MONTH(time1), DAY(time1) from timer;
+
+**
+날짜 포맷 변경 DATE_FORMAT(값, 형식)
+날짜 포맷 변경 DATE_FORMAT(값, '%Y-%m-%d');
+날짜 포맷 변경 DATE_FORMAT(값, '%Y.%m.%d');
+날짜 포맷 변경 DATE_FORMAT(값, '%Y-%m-%d %H:%i:%s');
+
+SELECT time1 FROM timer;
+SELECT DATE_FORMAT(time1, '%Y.%m.%d') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y/%m/%d') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y.%m.%d %H:%i:%s') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y/%m/%d %H:%i:%s') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y년 %m월 %d일 %H:%i:%s') FROM timer;
+
+
+----------------------------------------------------------------------------------
+테이블 조인 (pk (primary key), fk (foreign key))
+ - 테이블에 null 값이 들어가는 것을 싫어함 왠만하면 x : DB 무결성 : 중복 x 불필요한자료 x
+
+shop -> member(회원가입), cart, seller, buyer
+
+(제1정규화 : 다써서 만들어라)
+CREATE TABLE member(
+userid varchar(10),
+passwd varchar(10),
+cart_item varchar(20),
+sell_item varchar(20),
+buy_item varchar(20)
+);
+
+INSERT INTO member VALUES('koreait', '1234', '', '', '');
+INSERT INTO member VALUES('koreait2', '1234', '', '', '');
+
+필요없는데 왜 쓰냐 -> 무결성깨짐 -> 쪼개서 써라 -> 제2정규화 -> 필요하면 조인해서 사용할 수 있다.
+
+-분리해서 작업 (제2 정규화) : 필요하면 조인해서 사용할 수 있다.
+
+shop -> member, buyer (중요도 높은걸 pk)
+
+CREATE TABLE member(
+userid varchar(20) not null,
+passwd varchar(10) not null,
+name varchar(20) not null,
+regdate date,
+primary key(userid)
+);
+
+CREATE TABLE buyer(
+item_name varchar(20),
+item_price int,
+item_amount int,
+item_regdate date,
+userid varchar(20) not null,
+foreign key(userid) references member(userid)
+);
+
+references 참조하는 데이블의 컬럼이름(변수이름) 
+workbench의 리버스엔지니어링에서 확인가능 연결 관계
+
+- 조인(연결해서 하나처럼 사용할 때) -
+1. pk(기본키 : 중요도 가장) : null 값, 중복 데이터 x
+2. fk(외래키 : 자식 테이블) 
+    - 외래키는 부모테이블의 기본키와 동일해야 한다. (참조 무결성)
+       (외래키로 지정하는 컬럼은 기본키의 데이터 타입, 사이즈와 동일해야 한다.)
+
+member, buyer
+삭제는 자식부터.... 
+
+DROP TABLE buyer;
+DROP TABLE member;
+
+--------------------------------------------------------------------------------
+tut10
+ - images
+ - css
+ - js
+
+01_ex_clrs.html
+
+생상 #16진수 (0 ~ 9, A ~ F )
+ r  g   b   빛의 3원색 모두를 섞으면 흰색
+00 00 00
+
+rgba a는 색을 투명도 처리( 0 ~ 1 )
+
+색상이름표기법
+ - red, green, blue, skyblue
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
+
