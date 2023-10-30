@@ -1,7 +1,6 @@
 wrox, oreilly 
 
 
-
 inherEx01
 InherEx01.java
 
@@ -9,9 +8,6 @@ InherEx01.java
 //C++ -> 다중상속 -> 상속(자바) : 강제x -> 인터페이스(다중) : 강제성
 //		       강제성 abstract
 //		       extends		 implements
-
-
-
 
 
 Add : add, title, turnOn(), turnOff()
@@ -146,40 +142,4 @@ PolyEx.java
 별도 클래스 처리
 
 다형성 -> 객체지향
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
