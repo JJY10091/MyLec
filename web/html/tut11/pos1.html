@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>relative 상대좌표(기준값을 바꿀 수)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .rel_wrap {
+            position: relative;
+            
+        } 
+
+        .box {
+            width: 600px;
+            /* position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%); */
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- position을 이용해서 박스에 색깔 채우기 -->
+    <div class="rel_wrap">
+        <div class="box">
+            <img src="../tut07/images/img1.jpg" alt="">
+        </div>
+    </div>
+
+</body>
+
+</html>

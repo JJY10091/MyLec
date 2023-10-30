@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float 예제</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            background-color: #ccc;
+        }
+
+        /* :after 사각형 뒤, ::before 사각형 앞 설정 */
+        .wrap::after {
+            /* float 버그제거 */
+            content: '';
+            clear: both;
+            display: block;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: #254de4;
+            color: #fff;
+            margin: 10px;
+
+            /* float 설정 해제 clear : float쓰니 wrap 배경색이 안나오네? 버그임*/
+            float: left;
+        }
+
+    </style>
+</head>
+
+<body>
+
+</body>
+    <div class="wrap">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+    </div>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크립트</title>
+</head>
+
+<body>
+    <script>
+        //100, 200 = 300를 합수로(console, retrun)
+
+        function sum(num1, num2) {
+            console.log(num1 + num2)
+        }
+        sum(100, 200);
+
+        console.log("");
+
+        function add(num1, num2) {
+            return num1 + num2;
+        }
+        let result = add(100, 200);
+        console.log(add(1, 1));
+        console.log(result);
+
+        // 함수 결과를 변수에 저장 후 출력 : frontend
+        let r1 = function (n1, n2) {
+            return n1 + n2;
+        }
+        console.log(r1(100, 200));
+
+        //글자 출력 : 한 줄 출력할 떄는 중괄호 부분이 생략
+        function disp() {
+            return "Hello Koreait";
+        }
+        console.log(disp());
+        
+        //결과값을 변수로 받기 1
+        let result2 = function ()  {
+            return "Hello Koreait";
+        }
+        console.log( result2() );
+        
+        //결과값을 변수로 받기 2
+        let result3 = ()  => "Hello Koreait";
+        console.log(result3())
+
+        //매개변수에 값을 전달받아 저장해 글자 출력하기
+        let result4 =  (title) => console.log(title);
+        
+        result4("코리아화살표");
+
+        function disp1(title){
+            return title;
+        }
+
+        console.log(disp1("코리아아이티 아카데미"));
+
+        function disp2(title) {
+            console.log(title);
+        }
+        disp2("코리아아이티 아카데미2");
+
+        //javascript => jquery 
+        //페이지 랜더링이 끝나면 맨 처음 실행되는 코드
+        
+        // (익명함수)(초기값);
+        // 시작하자마자 welcome koreait
+
+        // msg = "Welcome Koreait"
+        //
+        (function (msg) {
+            console.log(`${msg}가 맨 처음 출력됩니다.`);
+        })("Welcome Koreait");
+
+        //jquery 방식
+        // $(function(msg) {
+
+        // });
+
+    </script>
+</body>
+
+</html>
