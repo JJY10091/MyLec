@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수연습</title>
+</head>
+
+<body>
+    
+    <script>
+        /*
+        함수(동작)
+        실행
+        */
+
+        function print1() { //매개변수 = parmeter = argument 없는
+            console.log("코리아아이티 아카데미");
+        }
+
+        function print2(title) { //있는
+            return title;
+        }
+
+        print1();
+        console.log(print2("Hello Javascript"));
+
+        function sum(num1, num2) { //ECMA 2015
+            console.log(`${num1+num2}`+" ECMA입니다.");
+            console.log(num1+num2+" 입니다.");
+        }
+
+        function add(num1, num2) {
+            return num1+num2;
+        }
+
+        sum(20, 10);
+        console.log(add(110, 200));
+
+    </script>
+
+</body>
+
+</html>

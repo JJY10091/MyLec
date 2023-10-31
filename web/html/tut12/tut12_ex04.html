@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>형제 선택자(sibling~)</title>
+
+    <style>
+        /* 형제선택자 */
+        h1~ul {
+            color: #f00;
+        }
+
+        /* 자식선택자 */
+        h1>ul {
+            color: blue;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <h1>BackEnd프로그램</h1>
+    <ul>
+        <li>자바프로그래밍</li>
+        <li>스프링 프로그래밍</li>
+        <li>데이터베이스 프로그램밍</li>
+    </ul>
+
+    <h1>
+        FrontEnd 프로그래밍
+        <ul>
+            <li>React JS</li>
+            <li>Anjular JS</li>
+            <li>View JS</li>
+        </ul>
+    </h1>
+    
+</body>
+
+</html>

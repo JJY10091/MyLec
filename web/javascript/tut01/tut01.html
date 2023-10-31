@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수선언/console.log예제</title>
+</head>
+
+<body>
+    <button>삭제</button>
+
+
+    <script>
+        
+
+        //let : 변수 저장 -> 선언 후 값 변경이 가능
+        //const : 함수 저장 또는 반복문 -> 선언 후 값 변경 x(final)
+        //var : 호이스팅 - 버그있음 쓰지마셈
+
+        // 출력 예제 : 코리아아이티 아카데미입니다.아카데미입니다
+        // 일반출력 +
+        // ECMA 2015 출력 : 백틱
+
+        // let str = "코리아아이티 아카데미.";
+        // console.log(str + "입니다.");
+
+        // console.log("");
+
+        // console.log(`${str}` 입니다.');
+
+        // console.log("");
+        // document.write(str)
+
+        // document.querySelector("button").onclick = function() {
+        //     let msg = "삭제 후 복구할 수 없습니다.\n삭제하시겠습니까?";
+
+        //     //confirm(메세지) : 확인, 취소 창 띄우는 함수
+        //     if( confirm(msg) ){
+        //         alert("삭제되었습니다. 메인페이지로 이동합니다");
+        //         location.href = "https://www.naver.com";
+        //     }
+
+        // }
+
+        // document.querySelector("button").addEventListener(이벤트방법, 함수);
+        
+        
+        // document.querySelector("button").addEventListener('click',  function (e) {
+        //     e.preventDefault();
+        //     let msg = "ddd삭제 후 복구할 수 없습니다.\n삭제하시겠습니까?";
+        //     if (confirm(msg)) {
+        //         alert("삭제되었습니다. 메인페이지로 이동합니다");
+        //         location.href = "https://www.naver.com";
+        //     }
+        // })
+
+        // document.querySelector("button").addEventListener('click',  (e) =>  {
+        //     e.preventDefault();
+        //     let msg = "ddd삭제 후 복구할 수 없습니다.\n삭제하시겠습니까?";
+        //     if (confirm(msg)) {
+        //         alert("삭제되었습니다. 메인페이지로 이동합니다");
+        //         location.href = "https://www.naver.com";
+        //     }
+        // })
+
+        const result = function sum() {
+            return 10+10;
+        }
+
+        // console.log(sum());
+        // console.log(result);
+
+        //매개변수로 입력 받아 출력하기
+        // let 변수를 선언
+        // const(함수)
+
+        for(let i = 0; i < 10; i++) {
+            console.log(i);
+        }
+
+    </script>
+
+</body>
+
+</html>
