@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>블록타입 & 인라인타입 예제</title>
     <style>
+
+        /* span에 직접 display:flex는 한칸 전부 차지하긴하는네
+        display:inline-block으로 설정하면 내용 만큼만 차지 */
+
         span {
             background-color: red;
             display: inline-block;
         }
+        
         p {
             width: 200px;
             height: 150px;
@@ -36,7 +41,7 @@
     -->
     <!--     
     블록 : 나머지는 block : 브라우저 해상도와 상관없이 무조건 100% 넓이를 가짐
-    인라인 : a, sap, img, table.... : 내용물만큼 넓이가 만들어짐
+    인라인 : a, span, img, table.... : 내용물만큼 넓이가 만들어짐
     -->
     <span>메뉴1</span>
     <span>메뉴2</span>
