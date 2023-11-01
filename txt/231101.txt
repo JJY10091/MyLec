@@ -1,0 +1,112 @@
+html
+inline block flex..
+
+
+
+
+
+** html, css, js(json, ajax - 백엔드) + db설계 + spring
+ - 코드 정렬, ppt => 이력서, 자기소개서, 기술경력서
+
+
+
+** 11.20 스프링 부트 시작 
+1. 관리자 페이지 : 반응형 처리x
+사용자, 관리자 페이지
+게시판 -> 회원가입 -> 다중게시판
+
+javascript
+tut05.html 
+DOM
+
+
+tut06.html
+html 변경
+
+tut07.html
+이미지바꾸기
+
+811380
+tut08.html
+tut09.html
+보였다가 안보였다가
+script로 class없애버리기
+
+tut10.html
+토글
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

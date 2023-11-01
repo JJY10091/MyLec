@@ -58,10 +58,15 @@ min-width : 100px;
      처음 해상도는 미디어 쿼리 생략가능
 
 -----------------------------------------------------------------------------
-flex_ex01.html
+flex_ex02.html
+flex_ex03.html
+flex_ex04.html
+- flex-grow
+  화면을 모바일 -> pc : 무조건 화면을 가득 채워서 표시
 
-
-
+flex_ex05.html
+- flex-shrink
+  pc -> 모바일 줄일 때
 
 
 
