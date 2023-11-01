@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerText, innerHTML, textContent</title>
+</head>
+
+<body>
+    <div id="info">
+        <br />
+        <p class="company">회사명 : 코리아아이티 아카데미</p>
+        <p class="address">주소 : 부산광역시</p>
+        <p class="tel">연락처 : 051-1234-5678</p>
+        <br />
+        <button class="btn1">회사명 변경하기</button>
+        <button class="btn2">정보 숨기기</button>
+    </div>
+
+    <script>
+        // //텍스트 가져오기 cf) <br />는 빼고
+        // //부모 밑에 자식 불러올떄 띄어쓰기
+        // let com = document.querySelector("#info .company");
+        // console.log(com.innerText);
+
+        // console.log("-----------------------")
+
+        // //HTML 코드로 가져오기
+        // let info = document.querySelector("#info");
+        // console.log(info.innerHTML);
+
+        // //textContent
+        // console.log( info.textContent );
+
+        let btn1 = document.querySelector(".btn1");
+        let btn2 = document.querySelector(".btn2");
+
+        function textChange() {
+            let str = "company : Korea It Academy"
+
+            //단순 글자만 변경 innerText, HTML를 추가하고싶으면 innerHTML
+            // document.querySelector("#info .company").innerText = str;
+
+            // document.querySelector("#info .company").innerHTML = "<strong>" + str + "</strong>";
+            document.querySelector("#info .company").innerHTML = "<strong><em>" + str + "</em></strong>";
+        }
+
+        function hide(e) {
+            //<input type='submit' value="로그인">
+            //<button type='submit'>로그인</button>
+            //위 경우에는 preventDefault(); 를 사용해라
+            e.preventDefault();
+            document.querySelector("#info").style.display = "none";
+
+        }
+
+        btn1.addEventListener('click', textChange);
+        btn2.addEventListener('click', hide);
+
+    </script>
+</body>
+
+</html>

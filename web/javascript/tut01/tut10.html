@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classList.Toggle("클래스명")</title>
+    <style>
+        .hide {
+            /* display: none; */
+            visibility: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>코리아아이티 아카데미</h1>
+    <div class="box">
+        <img src="images/1.jpg" alt="">
+    </div>
+    <button>Toggle(보임/숨김)</button>
+
+    <script>
+
+        function toggleImg() {
+            document.querySelector(".box img").classList.toggle("hide");
+        }
+
+        document.querySelector("button").onclick = toggleImg;
+
+    </script>
+</body>
+
+</html>

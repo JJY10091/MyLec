@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지바꾸기</title>
+    <style>
+        .box {
+            width: 500px;
+        }
+
+        img {
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="images/1.jpg" alt="빌 게이츠">
+    </div>
+    <button>이미지 바꾸기</button>
+    
+    <script>
+        let img = document.querySelector(".box img");
+        let btn = document.querySelector("button");
+
+        function changeImg() {
+            img.src = "images/2.jpg";
+        }
+
+        btn.onclick = changeImg;
+
+        // btn.addEventListener('click',imgChange) 
+    </script>
+</body>
+
+</html>

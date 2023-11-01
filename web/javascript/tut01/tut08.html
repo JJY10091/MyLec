@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classList.add() / classList.remove()</title>
+    <style>
+        .hide {
+            display: none;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- css 작성 후 사용할 곳에 class 추가할 때는 add() -->
+    <h1>코리아아이티 아카데미</h1>
+
+    <!-- 여러개 p의 class를 지울수 없네? -->
+
+    <p class="hide">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores, similique.</p>
+    <p class="hide">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores, similique.</p>
+
+    <button>숨긴상태에서 보임 : Remove</button>
+
+    <!-- css 작성 후 사용할 곳에 class 제거할 때는 remove() -->
+   
+    <script>
+
+        function remove() {
+            document.querySelector("p").classList.remove("hide");
+        }
+
+        document.querySelector("button").onclick = remove;
+
+    </script>
+</body>
+
+</html>

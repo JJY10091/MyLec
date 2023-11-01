@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        /*p { */
+            /* 숨기기 */
+            /* display: none; */
+
+            /* 다시 나타내기 */
+            /* display: block; */
+
+            /* 여백은 남아있고 내용만 숨김 */
+            /* visibility: hidden; */
+            /* visibility: visible; */
+        /*}*/
+        
+    </style>
+</head>
+
+<body>
+    <h1>코리아아이티 아카데미</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, odit.</p>
+    <button class="hide">Hide</button>
+    <button class="show">Show</button>
+
+    <script>
+        //개체 가져오기
+        let pr = document.querySelector("p");
+        let btn1 = document.querySelector(".hide");
+        let btn2 = document.querySelector(".show");
+
+        // //함수
+        function hide() {
+            pr.style.display = "none";
+        }
+
+        function show() {
+            pr.style.display = "block";
+        }
+
+        // //동작
+        // btn1.onclick = hide;
+        // btn2.onclick = show;
+
+        btn1.addEventListener('click',hide);
+        btn2.addEventListener('click',show);
+    </script>
+
+</body>
+
+</html>
