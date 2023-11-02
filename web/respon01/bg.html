@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero 이미지</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            background-image: url(images/bg.jpg);
+            /* 반복x */
+            background-repeat: no-repeat;
+            background-position: center;
+            /* 강제로 늘려 */
+            background-size: cover;
+            width: 100%;
+            height: 450px;
+        }
+
+        /* 어둡게 하는 스크린 */
+        .hero-screen-pos {
+            background-color: rgba(0, 0, 0, .3);
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: end;
+        }
+
+        .hero-content {
+            background-color: rgba(255, 255, 255, .6);
+            width: 50%;
+            padding: 30px 40px;
+            margin: 0 20px;
+            
+        }
+
+        .hero-content h1 {
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            /* 현재 줄간격의 1.5배 */
+            line-height: 1.5;
+            color: rgba(0, 0, 0, .7);
+            margin-bottom: 20px;
+        }
+
+        .btn-container button {
+            border: 0;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 1px solid #fff;
+            color: #333;
+            font-weight: bold;
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        @media (max-width:800px) {
+            .container {
+                height: 500px;
+            }
+
+            .hero-container {
+                max-width: 100%;
+                justify-content: center;
+            }
+
+            .hero-content {
+                width: 100%;
+                margin: 0 20px;
+            }
+
+            .hero-content h1 {
+                text-align: center;
+                font-size: 40px;
+            }
+            
+            .btn-container {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"> <!-- 100% 이미지 -->
+
+        <div class="hero-screen-pos"> <!-- 스크린 기준 : position :absolution -->
+            <div class="hero-container"> <!-- 1280 작업공간 -->
+                <div class="hero-content">
+                    <h1>Title</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus excepturi, sint ipsam sunt
+                        voluptas ad dolorum aspernatur nemo itaque voluptates dignissimos, in accusantium molestiae
+                        totam blanditiis enim laboriosam dolore nulla?</p>
+                    <div class="btn-container">
+                        <button>SHOW VIEW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
