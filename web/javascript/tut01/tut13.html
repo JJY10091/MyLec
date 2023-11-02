@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form 값 가져오기</title>
+
+    <style>
+        ul li {
+            list-style: none;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- method : url 에 드러나도 되냐 get 안되냐 post -->
+
+    <!-- form으로 감싸야 input이 작동됨 -->
+
+    <form action="" method="post">
+        <fieldset>
+            <legend>Login Box</legend>
+            <ul>
+                <li>
+                    <label>아이디</label>
+                    <input type="text" name="userid" class="userid" placeholder="아이디를 입력하세요" required />
+                </li>
+                <li>
+                    <label>비밀번호</label>
+                    <input type="password" name="passwd" class="passwd" placeholder="비밀번호를 입력하세요" required />
+                </li>
+                <li>
+                    <input type="submit" value="로그인">
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+    <script>
+        function formCheck(e) {
+            e.preventDefault();
+
+            let userid = document.querySelector(".userid");
+            let passwd = document.querySelector(".passwd");
+
+            if(userid.value ==""){
+                alert("아이디를 입력하세요.");
+                userid.focus();
+                return false;
+            }else {
+                alert(userid.value);
+            }
+
+            
+
+        }
+
+        //type이나 name으로 가져올수 있음
+        document.querySelector("input[type=submit]").addEventListener('click', formCheck)
+
+    </script>
+</body>
+
+</html>

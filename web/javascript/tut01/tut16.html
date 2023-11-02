@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelectorAll</title>
+</head>
+
+<body>
+    <form action="">
+        <fieldset>
+            <legend>회원가입 박스</legend>
+            <p>성별을 선택하세요.</p>
+            <label>
+                <input type="radio" name="gender" class="gender" value="M" > 남성
+            </label>
+            <label>
+                <input type="radio" name="gender" class="gender" value="W"> 여성
+            </label>
+            <p>
+                <input class="btn" type="submit" value="회원가입">
+            </p>
+        </fieldset>
+
+    </form>
+
+    <script>
+        // 배열 같은거 사용할때
+        // document.querySelectorAll
+
+        // console.log(document.querySelectorAll("input[name='gender']").length);
+
+        // (:) 콜론쓰네
+        //console.log(document.querySelectorAll("input[name='gender']:checked").length);
+
+
+        document.querySelector(".btn").addEventListener('click', function (e) {
+            e.preventDefault();
+            let check = 0; //체크여부 확인용 변수
+
+
+            // ????????
+            for(let i = 0; i < document.querySelectorAll("input[name='gender']").length; i++){
+                if(document.querySelectorAll("input[name='gender']:checked")[i]){
+                    check ++;
+                    
+                }
+            }
+
+            if(check == 0){
+                alert("성별을 선택하세요");
+            }
+        });
+    </script>
+</body>
+
+</html>
