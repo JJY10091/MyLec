@@ -1,0 +1,11 @@
+인프런 - 생활
+
+환경변수 출력
+printenv
+
+path 출력
+echo $PATH
+
+일시적으로 path 추가
+export 
+
