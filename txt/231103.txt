@@ -1,0 +1,24 @@
+selectbox
+ajax : 서버와 통신
+ajax로 db읽어와...(나중에)
+
+한글 폰트
+a1 
+noto sans
+nanum
+등
+
+랜더링:새로고침
+
+모달/ 팝업
+모달 
+- 스크린으로 덮어씌우기position 필요
+- close 버튼 눌러야만 닫힘
+
+
+res
+main.html
+
+
+테이블 : inline : 한줄 꽉안참 > 모바일에서 block으로 변경
+table.html
