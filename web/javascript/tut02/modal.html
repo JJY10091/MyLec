@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Window</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        ul li * {
+            display: block;
+        }
+
+        ul li:last-child button {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+
+            width: 100%;
+            border: 0;
+
+            /* hover쓸때는 투명처리?  */
+            border: 1px solid transparent;
+            background-color: tomato;
+            color: #fff;
+            font-weight: bold;
+            padding: 12px 8px;
+            outline: 0;
+            margin-bottom: 20px;
+        }
+
+        ul li:last-child button:hover {
+            background-color: rgb(255, 38, 0);
+            cursor: pointer;
+        }
+
+        .open {
+            background-color: tomato;
+            color: #fff;
+            padding: 10px 15px;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            display: none;
+
+        }
+
+        input {
+            width: 100%;
+            border: 0;
+            border: 1px solid #ccc;
+            padding: 12px 8px;
+            outline: 0;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            border: 1px solid tomato;
+        }
+
+        .login {
+            background-color: #fff;
+            width: 400px;
+            padding: 20px 30px;
+        }
+
+        .close-wrap {
+            text-align: right;
+        }
+
+        .close-wrap .close {
+            /* 배경 지우기 */
+            background-color: transparent;
+
+            border: 0;
+            font-size: 30px;
+            color: #bbb;
+        }
+
+        .close-wrap .close:hover {
+            color: tomato;
+            cursor: pointer;
+        }
+
+        .active {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" class="open">
+        모달 띄우기
+    </button>
+    <div class="modal">
+        <div class="login">
+            <div class="close-wrap">
+                <button class="close">&times;</button>
+            </div>
+            <div class="modal-content"></div>
+            <form>
+                <!-- form안에는 모두 인라인이네 -> 블록으로 바꿔봄 -->
+                <!-- ul li * {} -->
+                <ul>
+                    <li>
+                        <label>이메일</label>
+                        <input type="text" name="email" class="email">
+                    </li>
+                    <li>
+                        <label>비밀번호</label>
+                        <input type="password" name="passwd" class="passwd">
+                    </li>
+                    <li>
+                        <button type="submit" class="close">로그인</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let open = document.querySelector(".open");
+        let close = document.querySelector(".close");
+        let modal = document.querySelector(".modal")
+
+        open.onclick = function () {
+            modal.classList.add("active");
+        }
+
+        close.onclick = function () {
+            modal.classList.remove("active");
+        }
+
+        let email = document.querySelector(".email");
+        let passwd = document.querySelector(".passwd");
+        let submit = document.querySelector("button[type=submit]");
+
+        submit.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (email.value == "") {
+                alert("이메일 주소를 입력하세요");
+                email.focus();
+                return false;
+            }
+
+            if (passwd.value == "") {
+                alert("비밀번호를 입력하세요");
+                passwd.focus();
+                return false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

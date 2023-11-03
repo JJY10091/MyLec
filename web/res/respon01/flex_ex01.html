@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex css example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* flex는 1차원 처리, grid는 2차원 */
+        .flex-container {
+            background-color: #eee;
+            padding: 0px 0;
+            display: flex;
+    
+            /* 가로배치 */
+            /* justyfi : 배치 왼, 가, 오 */
+            /* 자식 왼쪽 배치 start or left*/
+            /* 같은 명령어는 가장 마지막명령을 실행함 */
+            /* 오른쪽 배치 end or right */
+            justify-content: start;
+            justify-content: center;
+            justify-content: end;
+
+            /* 왼쪽 끝 오른쪽 끝, 가운데 */
+            justify-content: space-between;
+
+            /* 좌우 여백 */
+            justify-content: space-around;
+
+            /* 세로 배치 : 높이(height)가 있어야함 */
+            height: 500px;
+            
+            align-items: start;
+            align-items: end;
+            align-items: center;
+        }   
+        
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            color: #fff;
+            margin: 10px;
+        }
+
+        /* 하나씩 따로 배치할떄 */
+        div.item:nth-child(1) {
+            align-self: start;
+        }
+        div.item:nth-child(2) {
+            align-self: center;
+        }
+        div.item:nth-child(3) {
+            align-self: end;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="item">Item1</div>
+        <div class="item">Item2</div>
+        <div class="item">Item3</div>
+    </div>
+</body>
+
+</html>
