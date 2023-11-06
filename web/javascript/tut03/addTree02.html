@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" class="content">
+        <button id="btn">Add Node Text</button>
+    </form>
+
+    <h1>Add NodeText List</h1>
+    <p>HTML/CSS/JAVASCRIPT</p>
+    <p>Database</p>
+
+    <script>
+
+        // document.querySelector("button").addEventListener('click',function(){
+        //     let addTag = document.createElement("p");
+        //     let text = document.querySelector("input[type='text']").value;
+        //     let addText = document.createTextNode(text);
+        //     addTag.appendChild(addText);
+        //     document.body.appendChild(addTag);
+        // })
+
+        // document.getElementById("btn"); 옛날방식
+
+        document.querySelector("#btn").addEventListener('click', function (e) {
+            e.preventDefault();
+
+            let addTag = document.createElement("p");
+            let el = document.querySelector(".content");
+            let val = document.querySelector(".content").value;
+            let addText = document.createTextNode(val);
+
+            if( el.value == ""){
+                alert("추가할 데이터를 입력하세요");
+                el.focus();
+                return false
+            }else{
+                addTag.appendChild(addText);
+                document.body.appendChild(addTag);
+                el.value = "";
+                el.focus();
+
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="items">
+        <li>HTML/CSS/JAVASCRIPT</li>
+        <li>Database</li>
+    </ul>
+
+    <form>
+        <input type="text" class="content" />
+        <button>원하는 위치에 추가</button>
+    </form>
+
+    <script>
+
+        // document.querySelector("button").addEventListener('click', (e) => {
+        //     e.preventDefault();
+
+        //     let addTag = document.createElement("li");
+        //     let el = document.querySelector(".content");
+        //     let val = document.querySelector(".content").value;
+        //     let addText = document.createTextNode(val);
+        //     let tagArea = document.getElementById("items");
+
+        //     if (el.value == "") {
+        //         alert("추가할 데이터를 입력하시오");
+        //         el.focus();
+        //         return false;
+        //     } else {
+        //         addTag.appendChild(addText);
+        //         tagArea.appendChild(addTag);
+        //         el.value = "";
+        //     }
+        // })
+
+        document.querySelector("button").addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let addTag = document.createElement("li");
+            let el = document.querySelector(".content");
+            let addText = document.createTextNode(el.value);
+            // let tagArea = document.querySelector("ul");
+
+            addTag.appendChild(addText);
+
+            if(!el.value){
+                alert("추가할 데이터를 입력하세요");
+                el.focus();
+                return false;
+            }else{
+                el.value = "";
+                document.querySelector("#items").appendChild(addTag);
+            }
+
+            
+
+            // if (el.value == "") {
+            //     alert("추가할 데이터를 입력하시오");
+            //     el.focus();
+            //     return false;
+            // } else {
+            //     addTag.appendChild(addText);
+            //     tagArea.appendChild(addTag);
+            //     el.value = "";
+            //}
+            
+        })
+
+    </script>
+
+</body>
+
+</html>
