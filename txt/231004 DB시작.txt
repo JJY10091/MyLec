@@ -181,7 +181,7 @@ SHOW TABLES;
     DB는 _로 단어를 연결하고
     자바는 카멜 표기법으로 연결
     - 제약 조건을 지정해야한다.
-      - NOT NULL : 절대 값이 비면 안되는 필드
+    - NOT NULL : 절대 값이 비면 안되는 필드
     
 CREATE TABLE MEMBER(
 email varchar(50) NOT NULL,

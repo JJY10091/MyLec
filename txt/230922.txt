@@ -33,8 +33,6 @@ list02 패키지
 2. 메소드를 이용해서 상품 등록
 
 ShopEx.java - 실행
-
-
    
 ---------------------------------------------------
 
@@ -43,6 +41,7 @@ ShopEx.java - 실행
 
 회원번호, 회원명 : 기본키(절대 중복 x) 
 ERD : primary key(pk-중복 안되는 값) - Foreign key
+
 join, erd, pk fk
 
 

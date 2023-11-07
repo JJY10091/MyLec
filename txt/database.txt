@@ -1,0 +1,1712 @@
+mysql 설치 
+포트번호 : 3306 
+id : root
+
+환경변수 설정
+mysql - bin 폴더 까지
+
+---
+
+서버 : 최고관리자(root) -> 일반계정에 권한 부여
+
+SQL : 구조적 질의어 - Structured Query Language
+-ANSI SQL : 모든 데이터베이스에서 공통으로 사용 가능
+
+데이터베이스(큰 폴더) -> 테이블(작은 폴더 : 여러 개 존재 - 실제 데이터가 저장)
+
+*데이터베이스 정의어(DDL) - D Definition L
+- 생성(CREATE), 제거(DROP), 변경(ALTER)
+
+
+use 데이터베이스명; (큰 폴더 안으로 들어가기)
+
+
+*데이터베이스 조작어(DML) - D Manupulate L
+- 입력(INSERT), 검색(SELECT), 수정(UPDATE), 삭제(DELETE)
+
+/* *데이터베이스 제어어(DCL) - D Control L : 보안 - 계정 생성 */
+
+큰 폴더 확인
+SHOW DATABASES;
+작을폴더 확인
+SHOW TABLES;
+
+
+
+대문자 -> 소문자 인식
+[DB 예제]
+*쇼핑몰(데이터베이스 - 큰폴더) : create 데이터베이스명  - SHOP
+use SHOP;
+
+타입을 정확하게 명시했는지 확인 => DESC 테이블명;
+
+-회원가입 : 객체(아이디, 이름, 전화번호, 나이...) - SHOP_MEMBER 테이블 : creat 테이블명
+
+CREATE TABLE SHOP_MEMBER(
+userid varchar(15),	//공간 변동 크고 최대 15글자
+name varchar(10),
+tel char(15), 	// 공간 15글자 고정 생성
+jumin char(14),
+age int,
+date date
+);
+
+-상품등록 : 객체(상품이름, 가격...) - SHOP_ITEMS 테이블 : creat 테이블명
+숫자 INT, 글자는 VARCHAR(저장할 글자수) //String 대신 VARCHAR
+
+
+*전사적자원관리(ERP) - 데이터베이스
+데이터베이스명 K_ERP
+use 데이터베이스명;
+
+-사원관리 : Employees 테이블 : K_ERP_EMP 테이블
+CREATE TABLE K_ERP_EMP(id int, name varchar(20), salary int, startDate date);
+
+사번(int), 사원명(varchar(5)), 급여(int), 입사일 datetime(date)
+
+-급여관리 : Salary 테이블 : K_ERP_SALARY 테이블
+-자제관리 : Stuff 테이블 : K_ERP_STUFF 테이블
+
+테이블 변수명 확인 : DESC 테이블 명
+
+mysqldump -uroot -p 백업할데이터베이스 이름 > 백업이름.확장자 >>> 데이터베이스 백업하는법
+
+
+mysqldump -uroot -p K_ERP > 20231004_erp.dump
+
+mysqldump -uroot -p K_ERP > 20231004_erp.sql
+
+
+SHOW DATABASES;
+
+CREATE DATABASE SHOP;
+
+SHOW DATABASES;
+
+
+내 컴퓨터
+- 이름 또는 IP
+localhost OR 127.0.0.1 >> 내컴퓨터
+도메인:3306  >> 도메인 있는 경우
+
+jdbc:mysql://localhost:3306/shop
+jdbc:mysql://도메인
+
+jdbc:mysql://  >> 프로토콜 : 자바와 db연결하겠다
+
+
+jdbcPrj01
+-JDBCPtj01Ex.java
+
+----
+쇼핑몰
+-회원가입 테이블
+ - 회원번호 : INT
+ - 회원이름 : VARCHAR
+ - 전화번호 : CHAR(13)
+ - 포인트 : INT
+ - 가입일 : DATE
+
+CREATE TABLE MEMBER(
+id int,
+name varchar(20),
+tel char(13),
+point int,
+regdate date
+);
+
+INSERT INTO MEMBER VALUES(101,'홍길동','010-1234-1234',1000, NOW());  // 글자 ' ' 사용
+
+SELECT *FROM MEMBER;
+
+
+DDL : CREATE, DROP, ALTER
+
+DML 
+테이블 생성 후
+
+INSERT
+SELECT
+UPDATE
+DELETE
+
+---------
+
+제약조건  -- (NOT NULL..>절대 비우면 안됨!)
+	 -- unique > 중복된 값 X
+
+쇼핑몰(SHOP)
+- 회원가입
+  - 이메일
+  - 비밀번호
+  - 이름
+  - 주소
+
+1. MYSQL 접속
+2. SHOW DATABASES;
+
+3-1. 미리 생성된 데이터베이스가 있으면 
+      USE 데이터베이스명;
+
+3-2. 만들어진 데이터베이스가 없다면
+      CREATE DATABASE 이름;
+      USE 데이터베이스명;
+
+4. 테이블 이름 확인
+SHOW TABLES;
+
+5-1. 테이블 생성 -> 자바에서 필드명과 동일하게 작업
+    필드면 만들 때
+    DB는 _로 단어를 연결하고
+    자바는 카멜 표기법으로 연결
+    - 제약 조건을 지정해야한다.
+    - NOT NULL : 절대 값이 비면 안되는 필드
+    
+CREATE TABLE MEMBER(
+email varchar(50) NOT NULL,
+passwd varchar(15) NOT NULL,
+name varchar(10) NOT NULL,
+post char(5),
+addr1 varchar(100),
+addr2 varchar(50)
+);
+
+SHOW TABLES;
+DESC 테이블명; --테이블 구조확인
+
+
+5-2. 테이블이 존재한다면...
+SHOW TABLES;
+DESC 테이블명; --테이블 구조확인
+
+6. CRUD 작업
+
+기본키 (primary key) : 빈값도 허용 x, 중복된 값도 허용x
+ -> 유일한 나를 구분해 준다(수정, 삭제, 검색 내 것만 처리가 가능)
+unique : 빈값 허용하지만 중복된 값은 허용 x
+
+
+email varchar(50) NOT NULL unique,
+
+CREATE TABLE MEMBER(
+email varchar(50) NOT NULL primary key,
+passwd varchar(15) NOT NULL
+);
+
+INSERT INTO 테이블명 VALUES(값...);
+
+INSERT INTO MEMBER VALUES
+('mail@mail.com', '12324'), 
+('mail2@mail.com', '12322'),
+('mail3@mail.com', '12354'),
+
+SELECT *FROM MEMBER;
+
+SELECT COUNT(*) FROM MEMBER; -- 사원 수 출력할때
+SELECT COUNT(*) AS 회원수 FROM MEMBER; -- 사원 수 출력할때
+SELECT COUNT(*) AS '회원 수' FROM MEMBER; -- 사원 수 출력할때 띄어쓰기 포함 ' '
+
+
+------
+CREATE TABLE MEMBER(
+id int not null primary key,
+name varchar(50),
+passwd varchar(10)
+);
+
+INSERT INTO MEMBER VALUES
+(101,'홍길동','1111'),
+(102,'김철수','2222'),
+(103,'이영희','3333');
+
+SELECT *FROM MEMBER; -- 출력
+
+DELETE FROM MEMBER; -- 전체 삭제
+
+DELETE FROM MEMBER WHERE id = 101; 
+
+---------------
+CREATE TABLE MEMBER(
+id int not null auto_increment,
+name varchar(10) not null,
+passed varchar(20) not null,
+primary key(id)
+);
+
+INSERT INTO MEMBER VALUES(NULL,'홍길동','1234');
+INSERT INTO MEMBER VALUES(NULL,'홍길동','1234');
+INSERT INTO MEMBER VALUES(NULL,'홍길동','1234');
+
+SELECT *FROM MEMBER; -- 출력
+
+
+----------------
+UPDATE 테이블명 SET 
+바꿀컬럼명 = 값, 바꿀컬럼명2 = 값 
+WHERE 조건 = 값;
+
+컬럼명 = 필드
+
+UPDATE MEMBER SET name = '코리아', passed = '4523' WHERE id = 5;
+
+
+------------------
+pk = primary key
+
+입력
+INSERT INTO 테이블명 VALUES(값1, 값2...)
+
+삭제
+DELETE FROM 테이블명 WHERE pk컬럼 =값;
+
+수정
+UPDATE 테이블명 SET 수정할컬럼1=수정값, 수정할컬럼2=수정값... WHERE pk컬럼 = 값;
+
+전체 검색
+SELECT * FROM 테이블명;
+
+조건 검색
+SELECT * FROM 테이블명 WHERE PK컬럼 = 값;
+
+
+쇼핑몰(SHOP)
+
+
+
+
+
+
+
+
+CREATE, DROP
+INSERT, SELECT, DELETE, UPDATE
+1. db 접속
+2. db 확인 : grp
+   - db 생성 또는 디비 확인
+   - use db명
+3. 테이블 컬럼(필드 타입 설정) 작업
+ 	사번(int) 사원명(varchar), 입사일(date), 퇴사일(date)
+
+	CREATE TABLE member(
+		com_id int not null auto_increment,
+		com_name varchar(30) not null,
+		startDate date,
+		endDate date,
+		primary key(com_id)
+	);
+
+	INSERT INTO member VALUES(NULL,'홍길동',now(),now());
+	select * from member;
+	SELECT * FROM member WHERE com_id =2;	
+
+	UPDATE member SET com_name = '김철수' WHERE com_id = 2;
+	select * from member;
+	
+	DELETE FROM member WHERE com_id =2;	
+	select * from member;
+	
+
+
+--------
+cf	// now(), current_date(); sysdate();
+	//SELECT * FROM member WHERE startDate >= '2023-01-01' and endDate <= '2023-2-31'
+	date는 대소 비교 가능하네
+
+
+   - 테이블 구조 확인 : DESC 테이블명
+   - member.sql
+
+cf) HTML > maxlength="30"
+
+
+4. insert, select, update, delete
+  조건 WHERE 컬럼명 = '홍길동'
+
+SELECT 구문에서 LIMIT : 항상 제일 마지막에 사용
+
+SELECT * FROM member ORDER BY com_id DESC LIMIT 1; < 1개만 보여줘
+SELECT * FROM member ORDER BY com_id DESC LIMIT 시작인덱스(0이 처음) 번호, 개수; < 시작인덱스번호부터 개수만큼 보여줘
+
+1) 회원테이블에서 2023-10-05일에 입사한 사원을 사번 내림차순으로 출력하시오
+2) 오래된 순으로 2개의 값만 출력하시오
+
+1)> SELECT * FROM member WHERE startDate >= '2023-10-05' ORDER BY com_id DESC;
+2)> SELECT * FROM member WHERE startDate = '2023-10-05' ORDER BY com_id DESC LIMIT 1, 2;
+
+SELECT * FROM member 조건, 정렬, Limit;
+
+
+
+
+
+
+
+
+
+
+
+1. Mysql 데이터베이스
+mysql.com - downloads 
+
+(1) CUI : cmd - 권장
+(2) GUI(그래픽) : Workbench
+
+서버(관리자 1명 : root) 
+-> 사용할 수 있는 아이디인지 확인 (mysql 데이터베이스에 사용자가 저장되어있음.)
+-> 사용자 계정(root가 생성) : 아이디, 비밀번호
+-> 관리자가 데이터베이스 생성(db이름은  사용자아이디)
+-> 명령어를 이용해서 생성, 권한설정, 새로고침
+
+(1) CUI (root계정으로 사용자 계정만들기)
+  - koreait으로 db에 계정 생성하기  (koreait/1234)
+  - 사용할수 있는지 확인 > show databases;
+  - koreait database 생성 > create database koreait;
+  - 계정 생성하기
+cf)    DDL 
+       DML 
+       DCL : grant, reboke (권한 부여, 삭제)
+     > 	
+
+/********************
+create user 아이디@'localhost' identified by '비밀번호';
+GRANT ALL privileges ON 사용할DB이름.* TO 아이디@'localhost with grant option;
+flush privileges; 
+
+create user koreait@'localhost' identified by '1234';
+GRANT ALL privileges ON koreait TO koreait@'localhost' with grant option;
+alter user koreait@'%' identified with mysql_native_password by '1234';
+flush privileges; 
+***********************/ 
+(2) GUI로 계정만들기
+
+
+다시 사용자계정 shopdb 비밀번호 1234 
+shopdb/1234
+>
+create database shopdb;
+Create USER shopdb@'%' identified by'1234';
+GRANT ALL ON shopdb.* TO shopdb@'%' with grant option;
+flush privileges;
+
+사용자계정 접속 : 만든 데이터베이스 접근.
+
+use shopdb;
+
+create table items(
+item_id int,
+item_name varchar(100)
+);
+
+create table cart(
+cart_id int,
+cart_item_name varchar(20)
+);
+
+ERD로 만든 DB보기
+
+Db Definition Laguage
+DDL : Definition : 정의어 => CREATE, DROP, ALTER(변경)
+
+Rename : 테이름 이름 바꿀떄
+tbl_board => tbl_article
+tbl_config => tbl_env (workbench)
+
+RENAME TABLE tbl_board TO tbl_article;
+> (테이블명 변경)
+
+ALTER TABLE tbl_article ADD tbl_article_date datetime;
+> (tbl_article_date 추가)
+
+ALTER TABLE tbl_article MODIFY COLUMN tbl_board_name varchar(50);
+> (컬럼타입수정)
+
+ALTER TABLE tbl_article RENAME COLUMN tbl_board_name TO tbl_article_name;
+> (컬럼명변경)
+
+ALTER TABLE tbl_article ADD tbl_article_content varchar(100) AFTER tbl_article_name;
+> (컬럼추가 끼워넣기)
+
+ALTER TABLE tbl_article DROP COLUMN tbl_article_content;
+> (컬럼제거)
+
+SELECT item_name FROM items WHERE item_name IS NULL;
+SELECT item_name FROM items WHERE item_name IS NOT NULL;
+
+
+
+
+
+1. 데이터베이스 백업  
+
+백업 (mysqldump) <->복원(mysql)
+저장할 때 확장자 : 20231023_koreait.dump, *.sql
+
+백업 : 윈도우에서 명령어 실행 mysqldump는 환경변수에 설정되어있으므로 
+	저장할 폴더로 이동후 바로 실행 
+백업
+mysqldump -u아이디 -p 디비전체 > 20231023_grp.dump
+mysqldump -u아이디 -p 디비 테이블 > 20231023_grp.dump
+mysqldump -u아이디 -p 디비전체 > 20231023_grp.sql
+
+권한이 없으면 그냥 root로
+
+같은이름의 디비나 테이블 만들어두고 가져오기
+복원
+mysql -uroot -p 디비 < 20231023_grp.dump
+mysql -uroot -p 디비 테이블 < 20231023_grp.dump
+
+
+mysql workbench를 이용해서 백업 복원하는방법
+
+------------------------------------------------------------------
+DDL 
+create drop alter
+workbench에서 alter 하기
+
+
+DML 
+
+user shopdb;
+
+drop table if exists employes;
+
+create table employees(
+emp_id int not null auto_increment,
+emp_name varchar(30),
+emp_salary int,
+primary key(emp_id)
+);
+
+
+-INSERT하는 방법들
+
+INSERT INTO employees VALUES(NULL, '홍길동', 100);
+INSERT INTO employees (emp_id, emp_name, emp_salary) VALUES(null, '이영희', 200);
+
+nor null은 필수
+INSERT INTO employees(emp_id) VALUES(null);
+
+INSERT INTO employees VALUES(NULL, '부산', 300), (NULL, '서울', 400), (NULL, '광주', 500);
+
+-SELECT 기능
+SELECT * FROM employees;
+SELECT * FROM employees WHERE emp_name IS null;
+SELECT * FROM employees WHERE emp_name IS NOT null;
+
+SELECT * FROM employees WHERE emp_salary >= 300;
+
+SELECT COUNT(*) AS '사원 수' FROM employees WHERE emp_salary >= 300;
+
+집계함수 : 결과가 하나 => COUNT(), MAX(), MIN(), SUM(), AVG(),
+	 DISTINCT(컬럼명), DISTINCT 컬럼명 : 중복제거
+
+ + group by + having 조건
+
+SELECT SUM(emp_salary) AS '사원 수' FROM employees WHERE emp_salary >= 300;
+
+SELECT MAX(emp_salary) AS '사원 수' FROM employees WHERE emp_salary >= 300;
+
+SELECT MIN(emp_salary) AS '사원 수' FROM employees WHERE emp_salary >= 300;
+
+
+
+
+
+
+
+번호 이름 비번 성별 자기소게
+남자 여자 
+M, F
+Man, Famale
+
+CREATE TABLE member(
+mem_id int not null auto_increment,
+mem_name varchar(10) not null,
+mem_pwd varchar(10) not null,
+mem_gender char(1) not null,
+mem_intro text,
+mem_regdate date,
+primary key(mem_id)
+);
+
+
+INSERT INTO member values(null, '홍길동', '1234', 'M', '자기소개1', now());
+INSERT INTO member values(null, '홍길동', '5678', 'M', '자기소개2', sysdate());
+INSERT INTO member values(null, '이영희', '0000', 'F', '자기소개3', curdate());
+INSERT INTO member values(null, '김부산', '8888', 'M', '자기소개4', '2023-01-01');
+
+SELECT * FROM member;
+
+중복제거
+SELECT DISTINCT mem_name FROM member;
+SELECT DISTINCT(mem_name) FROM member;
+
+INSERT INTO member values(null, '김부산', '8888', 'M', '자기소개4', now() + 1);
+
+2023년 01월 01일 ~ 2023년 12월 31일에 입사한 사원의 이름과 날짜를 출력하시오
+select mem_name, mem_regdate from member 
+where mem_regdate >= '2023-01-01' and mem_regdate <= '2023-12-31';
+
+2023년 01월 01일 ~ 2023년 12월 31일에 입사한 사원의 사원의 수를 출력하시오
+select count(*) from member
+where mem_regdate >= '2023-01-01' and mem_regdate <'2023-12-31';
+
+성별이 남자인 사람의 아이디와 성별을 출력하시오
+select mem_id, mem_gender FROM member
+where mem_gender = 'M';
+
+성별이 남자인 사람의 수를 출력하되 컬럼명은 회원(남자)로 출력하시오
+select count(*) AS '회원(남자)' FROM member where mem_gender = 'M'; 
+
+ 일치 조건 <-> 유사 검색 
+  =홍길동          %홍%~
+
+
+입사일이 01월 01일 ~ 2023년 12월 31일에 사람의 수를 출력하시오
+SELECT COUNT(*) FROM member WHERE mem_regdate >= '2023-01-01' AND mem_regdate <= '2023-12-31';
+
+
+컬럼명 Between a And b;
+입사일이 01월 01일 ~ 2023년 12월 31일에 사람의 수를 출력하시오(속도 O)
+SELECT COUNT(*) FROM member WHERE mem_regdate between  '2023-01-01' AND '2023-12-31';
+
+AND 연산 : 이고, 이면서 - 조건을 모두 만족
+OR 연산 : 이거나, 또는 - 조건 중 하나만 만족
+
+
+성별이 여자인 사람의 이름과 성별을 출력하시오
+SELECT mem_name, mem_gender FROM member
+where mem_gender = 'F';
+
+
+OR 연산
+성별이 남자이거나 여자인 사람의 이름과 성별을 출력하시오
+SELECT mem_name, mem_gender FROM member
+where mem_gender = 'F' OR mem_gender = 'M';
+
+
+-OR 연산 : 컬럼명 IN (값1, 값2, 값3)
+성별이 남자이거나 여자인 사람의 이름과 성별을 출력하시오
+SELECT mem_name, mem_gender FROM member
+where mem_gender IN('M','F');
+
+
+---------------------------------------------------------------------------------------
+유사어 검색 : _. %
+
+_: 글자 한글자	홍_ _
+% : 글자 수 제한 x	%홍% : 홍이 포함된 글자 , 홍% : 홍으로 시작되는 글자,  홍%
+
+- 컬럼명 LIKE '%검색어
+
+- 컬럼명 LIKE '%검색어'
+- 컬럼명 LIKE '검색어%'
+
+mem_name, mem_intro
+이름이 홍으로 시작하는 사람의 모든 정보를 출력하시오
+select * from member
+where mem_name like '홍%';
+
+
+이름이 홍으로 시작하는 사람의 수를 출력하시오
+select count(*) as '홍으로 검색된 회원 수' from member
+where mem_name like '홍%';
+
+mem_intro 컬럼에 자기소개가 포함되어 있는 회원의 회원번호와, 이름, 성별을 출력하시오
+단, 이름의 오름차순으로 정렬하시오
+select mem_id, mem_name, mem_gender from member where mem_intro like '%자기소개%' order by mem_name asc;
+
+조건 + 정렬 + (LIMIT)
+
+select * from member where mem_intro like '%자기소개%' order by mem_name asc;
+
+asc (오름차순)
+desc(내림차순)
+
+mem_intro 컬럼에 자기소개가 포함되어 있는 회원 정보 전부를 출력하시오
+(단, 이름의 내림차순으로 출력하되 최근 2개만 출력되도록 하시오. LIMIT2)
+
+select * from member 
+where mem_intro like '%자기소개%' 
+order by mem_name desc 
+limit 2;
+
+
+cf html에서 검색어를 변수로 받아서 db에 사용함
+검색어 <input type="text" name="search">
+
+
+where group by. . . . . .oder by xx limit x는 가장 뒤에 
+
+
+
+
+
+
+
+heidisql.com
+
+ - GUI 환경에서 데이터베이스 관리하는 툴
+
+---------------------------------------------------------------------------------
+1. 개발 프로그램(groupware -> grpdb -> 테이블(회원...)) 순서
+ (1) View 구성(html, css, js)	
+ (2) form(input) 되어 있는  view -> db생성 -> 테이블 생성
+ (3) 테이블 확인 후 객체 생성
+ (4) Spring에서 환경 설정 후 작업
+
+2. grpdb 테이블 (member)
+use grpdb;
+
+CREATE TABLE employees(
+emp_id int not null auto_increment,
+emp_name varchar(5) not null,
+emp_salary int(4) not null,
+emp_hire date,
+primary key(emp_id)
+)auto_increment=100; 
+
+데이블 구조 : describe employees; -> desc로 사용해도 됨
+
+INSERT INTO employees VALUES(NULL, '홍길동', 5, now());
+INSERT INTO employees VALUES(NULL, '이영희', 100, now());
+INSERT INTO employees VALUES(NULL, '김철수', 20, now());
+
+SELECT ~ WHERE ~ ORDER BY ~ LIMIT
+ASC 오름
+DESC 내림
+
+SELECT * FROM employees ORDER BY emp_id DESC;
+
+* 집계함수는 결과가 1만 출력되므로 ORDER BY, LIMIT 사용X
+COUNT, DISTINCT, SUM, AVG, MAX, MIN
+
+SELECT COUNT (*) AS '사원수' FROM employees;
+SELECT COUNT(*) AS total FROM employees;
+
+SELECT SUM(emp_salary) as '급여의 총합' FROM employees;
+
+------------------------------------------------
+
+이름과 급여만 출력하시오
+(단, 이름의 오름차순으로 정렬하시오.)
+
+SELECT emp_name, emp_salary FROM employees ORDER BY emp_name ASC;
+
+회원번호, 이름, 입사일을 출력하시오
+(단, 입사일이 2023년 01월 01일 이전에 입사한 사원만 출력하시오)
+SELECT emp_id, emp_name, emp_hire FROM employees WHERE emp_hire <= '2023-01-01';
+
+SELECT COUNT(*) AS '검색된 회원수' FROM employees WHERE emp_hire <= '2023-01-01';
+
+
+2022 ~ 2023년에 입사한 직원의 수를 구하시오 -> 2022-01-01  : 띄어쓰기 , 날짜 포멧을 저장된 포멧과 동일하게
+SELECT COUNT(*) AS '검색된 회원수' FROM employees 
+WHERE '2022-01-01' <= emp_hire AND emp_hire <= '2023-01-01';
+
+SELECT COUNT(*) AS '2023년에 입사한 회원수' FROM employees 
+WHERE emp_hire >= '2023-01-01' AND emp_hire <= '2023-12-31';
+
+컬럼이름 Between 조건1 AND 조건2;'
+
+2023년에 입사한 직원의 이름을 출력하시오
+단, 이름을 기준으로 내림차순으로 정렬하시오
+SELECT emp_name FROM employees 
+WHERE emp_hire Between '2023-01-01' AND '2023-12-31' ORDER BY emp_name desc;
+
+
+--------------------------------------------------------------------------------------------------------
+
+데이터와 데이터를 연결
+
+concat(데이터1, 데이터2)
+
+연습 출력
+SELECT concat('010', '1234') as 'tel';
+SELECT concat('010', '-', '1234') as 'tel';
+SELECT concat('010', '-', '1234','-','5678') as 'tel';
+
+
+100 홍길동
+SELECT concat(emp_id, ' ', emp_name) as '사원정보 출력' FROM employees;
+
+급여가 천만원 이상인 직원의 사번과 이름을 출력하시오
+*단위(백만원)
+
+SELECT emp_id, emp_name from employees WHERE emp_salary >= 10;
+
+일치
+사번이 101이고 이름이 홍길동인 사람의 사원정보를 출력하시오
+SELECT * FROM employees WHERE emp_id = 101 AND emp_name ='홍길동' ;
+
+
+유사 : WHERE 컬럼명 LIKE '%검색어%';
+이름에 '철'이 포함되어 있는 사람의 이름을 출력하시오
+SELECT emp_name from employees WHERE emp_name LIKE '%철%';
+
+SELECT emp_name from employees WHERE emp_name LIKE '%철%' and emp_name LIKE '%김%';
+
+성이 '김'씨 인 사람이 몇명입니까
+SELECT COUNT(*) AS '김씨 직원 수' from employees WHERE emp_name LIKE '김%';
+SELECT concat('검색된 회원은 ', count(*), '명') from employees WHERE emp_name LIKE '김%';
+
+SELECT * FROM employees;
+
+사원을 아이디의내림차순으로 정렬하고 최근에 입사한 2명만 출력하시오.
+
+SELECT * FROM employees ORDER BY emp_id DESC LIMIT 2;
+
+SELECT * FROM employees ORDER BY emp_id DESC LIMIT 0, 2;
+LIMIT 배열시작번호(0부터 시작), 개수
+
+
+사원을 아이디의내림차순으로 정렬하고 입사일이 제일 오래된 회원을 출력하시오.
+SELECT * FROM employees ORDER BY emp_id DESC LIMIT 1,2;
+
+
+-------------------------------------------------------------------------------------------
+카테고리+개수 출력 (어려움)
+-GROUP BY 컬럼명;
+
+ - car 테이블에서 
+
+
+SELECT 회사명, 집계함수 FROM car
+GROUP BY 회사명;
+
+SELECT 이름, 집계함수 FROM car
+GROUP BY 이름;
+
+>
+
+현대차(3), 기아차(5), 쌍용차(2)
+
+CREATE TABLE car(
+company varchar(20) not null,
+carName varchar(20) not null
+);
+
+INSERT INTO car VALUES('현대차', '아반떼');
+INSERT INTO car VALUES('현대차', '소나타');
+INSERT INTO car VALUES('현대차', '제네시스');
+
+INSERT INTO car VALUES('기아차', '모닝');
+INSERT INTO car VALUES('기아차', 'K3');
+INSERT INTO car VALUES('기아차', 'K5');
+INSERT INTO car VALUES('기아차', 'K7');
+INSERT INTO car VALUES('기아차', 'K9');
+
+INSERT INTO car VALUES('쌍용차', '렉스턴');
+INSERT INTO car VALUES('쌍용차', '티볼리');
+
+
+등록된 전체 차종의 수는 10입니다.
+
+SELECT COUNT(*) AS '등록된 전체 차종의 수는' FROM car;
+
+SELECT company, COUNT(*) AS cnt FROM car
+GROUP BY company
+ORDER BY company ASC;
+
+요약된 회사의 차량 개수가 5보다 큰 것만 표시하시오
+
+GROUP BY 일반컬럼 Having 앞에서 표시한 집계함수
+>순차적으로 
+
+SELECT * FROM car;
+SELECT company, count(*) FROM car;
+SELECT company, count(*) FROM car GROUP BY company;
+SELECT company, count(*) FROM car GROUP BY company HAVING count(*) >= 5;
+SELECT company, count(*) as '재고가 많은 차/수량' FROM car GROUP BY company HAVING count(*) >= 5;
+SELECT company, count(*) as 'cnt' FROM car GROUP BY company HAVING count(*) >= 5;
+
+최종
+SELECT company, count(*) as 'cnt' 
+FROM car 
+GROUP BY company 
+HAVING count(*) >= 5 
+ORDER BY company LIMIT 0, 1;
+
+
+
+
+
+
+
+
+
+
+
+ex)
+itemName, 집계합수 => group by;
+=>
+SELECT itemName, COUNT(*) AS cnt FROM items(=테이블명);
+GROUP BY itemName
+ORDER BY itemName ASC;
+
+요약된 회사의 차량 개수가 5보다 큰 것만 표시하시오
+
+
+
+
+
+
+
+
+
+
+-------------------------DB--------------------------------
+pk,  fk
+정규화 
+
+1. Group by
+
+부서별 직원 수를 출력하시오
+
+use grpdb;
+
+create table company (
+com_id int not null auto_increment,
+com_buseo varchar(10) not null,
+com_name varchar(10),
+primary key(com_id)
+);
+
+INSERT INTO company VALUES(NULL, '인사과', '홍길동');
+INSERT INTO company VALUES(NULL, '인사과', '김영희');
+
+INSERT INTO company VALUES(NULL, '자재과', '이영희');
+
+INSERT INTO company VALUES(NULL, '임원실', '김대표');
+INSERT INTO company VALUES(NULL, '임원실', '장상무');
+
+INSERT INTO company VALUES(NULL, '비서실', '너비서');
+
+SELECT * FROM company;
+
+SELECT COUNT(*) AS '전체 사원수' FROM company;
+
+SELECT COUNT(com_buseo) AS '전체 부서수' FROM company;
+
+SELECT distinct(com_buseo) AS '중복제거 부서수' FROM company;
+
+SELECT COUNT( distinct(com_buseo) ) AS '부서수' FROM company;
+
+예시 >인사과(3), 자재과(10), 임원실(2), 비서실(5)로 부서별 직원 수를 출력하시오.
+
+SELECT com_buseo, count(com_name) FROM company; >> 사용할 수 없다 > group by 사용해라
+
+SELECT com_buseo, count(com_name) FROM company
+GROUP BY com_buseo
+ORDER BY com_buseo ASC;
+
+단, 직원수가 2명 이상인 부서만 출력하시오.
+SELECT com_buseo, count(com_name) FROM company
+GROUP BY com_buseo
+HAVING count(com_name) >= 2
+ORDER BY com_buseo DESC;
+
+인사과 뽑아내기
+SELECT  com_buseo, count(com_name) AS CNT FROM company
+GROUP BY com_buseo
+HAVING count(com_name) >= 2
+ORDER BY com_buseo DESC
+LIMIT 1, 1;
+
+
+---------------------------------------------------------------------
+mysql 내장 함수
+
+create table scores(
+family char(1),
+name varchar(10),
+passwd varchar(10),
+score int,
+birth date
+);
+
+insert into scores values('H','홍길동', '1234', 80.3333, '1990-01-01');
+insert into scores values('K', '김철수', '0000', 95.7777, '2000-01-01');
+insert into scores values('', 'null', 'null', 0, '2010-01-01');
+
+점수가 0보다 크면 응시 아니면 미응시로 출력하시오.
+
+select name, if(score > 0, '응시', '미응시') as '응시/미응시', score from scores;
+
+1990년대 생은 '90s' 2000년대 생은 '00s' 2010년대 생은 '10s'로 표시하시오
+select if(birth >= '2000-01-01', '90s', '00s') as 'Generation' from scores;
+
+
+family 컬럼의 값을 대문자 : Upper(), Lower()
+select upper(family) from scores;
+
+trim() 좌우공백제거 ( 사이 공백제거 x)
+insert into scores values('c', '코리아', ' 1234&', 99, '2023-01-01');
+
+select passwd from scores;
+select trim(passwd) from scores;
+
+비밀번호 공백, &제거하기
+replace(컬럼명, '원본', '바꿀내용');
+
+select passwd from scores;
+select replace(trim(passwd), '&', ' ') from scores;
+
+
+create table tel(
+tel1 char(3),
+tel2 char(4),
+tel3 char(4)
+);
+
+insert into tel values('010', '1234', '6789');
+insert into tel values('011', '5555', '5432');
+
+이어붙이기(concat), 짤라내기(left, right) 바꾸기(6789->****)
+
+select * from tel;
+select concat(tel1, '-', tel2, '-', tel3) from tel;
+
+통신사 번호
+왼쪽 부터 3글자
+select left(tel1, 3) from tel;
+select left(concat(tel1, '-', tel2, '-', tel3), 3) from tel;
+select left(trim(concat(tel1, '-', tel2, '-', tel3)), 3) as '통신사'from tel;
+
+
+휴대폰번호 끝자리만 ****
+
+select concat(tel1, tel2, tel3) from tel;
+select right(concat(tel1, tel2, tel3), 4) from tel;
+select trim( right(concat(tel1, tel2, tel3), 4)) from tel;
+
+
+변경해서 출력하기
+select insert('5678', 1, 4, '****');  : insert into와 다른거임
+
+select 
+insert(
+trim( right(concat(tel1, tel2, tel3), 4))
+, 1, 4, '****') 
+from tel;
+
+---------------------------------------------------------------------------
+create table timer(
+time1 datetime,
+time2 datetime,
+time3 datetime,
+time4 datetime
+);
+
+insert into timer values(now(), sysdate(), curdate(), current_timestamp());
+
+select * from timer;
+select time1 from timer;
+
+년도 YEAR()
+월 MONTH()
+일 DAY()
+
+select YEAR(time1), MONTH(time1), DAY(time1) from timer;
+
+**
+날짜 포맷 변경 DATE_FORMAT(값, 형식)
+날짜 포맷 변경 DATE_FORMAT(값, '%Y-%m-%d');
+날짜 포맷 변경 DATE_FORMAT(값, '%Y.%m.%d');
+날짜 포맷 변경 DATE_FORMAT(값, '%Y-%m-%d %H:%i:%s');
+
+SELECT time1 FROM timer;
+SELECT DATE_FORMAT(time1, '%Y.%m.%d') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y/%m/%d') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y.%m.%d %H:%i:%s') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y/%m/%d %H:%i:%s') FROM timer;
+SELECT DATE_FORMAT(time1, '%Y년 %m월 %d일 %H:%i:%s') FROM timer;
+
+
+----------------------------------------------------------------------------------
+테이블 조인 (pk (primary key), fk (foreign key))
+ - 테이블에 null 값이 들어가는 것을 싫어함 왠만하면 x : DB 무결성 : 중복 x 불필요한자료 x
+
+shop -> member(회원가입), cart, seller, buyer
+
+(제1정규화 : 다써서 만들어라)
+CREATE TABLE member(
+userid varchar(10),
+passwd varchar(10),
+cart_item varchar(20),
+sell_item varchar(20),
+buy_item varchar(20)
+);
+
+INSERT INTO member VALUES('koreait', '1234', '', '', '');
+INSERT INTO member VALUES('koreait2', '1234', '', '', '');
+
+필요없는데 왜 쓰냐 -> 무결성깨짐 -> 쪼개서 써라 -> 제2정규화 -> 필요하면 조인해서 사용할 수 있다.
+
+-분리해서 작업 (제2 정규화) : 필요하면 조인해서 사용할 수 있다.
+
+shop -> member, buyer (중요도 높은걸 pk)
+
+CREATE TABLE member(
+userid varchar(20) not null,
+passwd varchar(10) not null,
+name varchar(20) not null,
+regdate date,
+primary key(userid)
+);
+
+CREATE TABLE buyer(
+item_name varchar(20),
+item_price int,
+item_amount int,
+item_regdate date,
+userid varchar(20) not null,
+foreign key(userid) references member(userid)
+);
+
+references 참조하는 데이블의 컬럼이름(변수이름) 
+workbench의 리버스엔지니어링에서 확인가능 연결 관계
+
+- 조인(연결해서 하나처럼 사용할 때) -
+1. pk(기본키 : 중요도 가장) : null 값, 중복 데이터 x
+2. fk(외래키 : 자식 테이블) 
+    - 외래키는 부모테이블의 기본키와 동일해야 한다. (참조 무결성)
+       (외래키로 지정하는 컬럼은 기본키의 데이터 타입, 사이즈와 동일해야 한다.)
+
+member, buyer
+삭제는 자식부터.... 
+
+DROP TABLE buyer;
+DROP TABLE member;
+
+
+
+
+
+
+
+
+
+
+
+
+join + erd 
+
+쇼핑몰 shopdb
+
+<테이블 여러개, 쇼핑몰 DB설계>
+
+회원가입 users
+
+카트(세션/쿠키에 임시 저장하거나 db에 저장하는 경우) cart
+상품구매 buy
+
+카테고리 category
+상품등록 product
+
+>
+CREATE DATABASE shopdb;
+
+회원가입
+CREATE TABLE users(
+userid varchar(20) not null,
+name varchar(10) not null,
+primary key(userid)
+);
+
+> 회원가입
+INSERT INTO users VALUES('koreait', '홍길동');
+
+
+카트
+create table cart(
+pro_num varchar(20) not null,
+pro_name varchar(100),
+pro_price int,
+cart_id int not null auto_increment,
+userid varchar(20) not null,
+primary key(cart_id),
+foreign key(userid) references users(userid)
+);
+
+>
+INSERT INTO cart VALUES('101', 'LG IBM Computer', 10, NULL, 'koreait');
+INSERT INTO cart VALUES('102', 'Apple IPhine', 15, NULL, 'koreait');
+
+--------------users cart 조인-----------
+아이디, 이름, 상품명, 가격을 표시하시오.  (t1 INNER JOIN t2 ON 조건)
+
+SELECT * FROM users U INNER JOIN cart C ON U.userid = C.userid;
+
+SELECT U.userid, U.name, C.pro_name, C.pro_price FROM users U INNER JOIN cart C ON U.userid = C.userid;
+
+
+
+
+상품구매
+create table buy(
+buy_id int not null auto_increment,
+pro_num varchar(20) not null,
+pro_name varchar(100),
+pro_price int,
+pro_count int,
+pro_delivery char(1),
+userid varchar(20) not null,
+primary key(buy_id),
+foreign key(userid) references users(userid)
+);
+
+카테고리
+create table category(
+cate_name varchar(20) not null,
+primary key(cate_name)
+);
+
+>
+INSERT INTO category VALUES('컴퓨터');
+INSERT INTO category VALUES('노트북');
+INSERT INTO category VALUES('스마트폰');
+SELECT COUNT(*) FROM category;
+
+상품등록 
+create table product(
+pro_num varchar(20) not null,
+pro_name varchar(100),
+pro_price int,
+pro_count int,
+cate_name varchar(20) not null,
+primary key(pro_num),
+foreign key(cate_name) references category(cate_name) ON UPDATE cascade ON DELETE restrict
+);
+
+> 상품 등록
+INSERT INTO product VALUES('101', 'LG TV', 1, 1, '가전');   >> 오류난다 추가할 수 없음 category가 알맞지 않음
+INSERT INTO product VALUES('101', 'LG 컴퓨터', 1, 1, '컴퓨터');
+
+>카테고리 제거해봄
+DELETE FROM category WHERE cate_name ='컴퓨터';
+>제거하면 오류 남
+
+>카테고리 업데이트
+UPDATE category SET cate_name = '컴퓨터2' WHERE cate_name = '컴퓨터';
+
+>업데이트시 상품 카테고리 확인
+SELECT * FROM category;
+SELECT * FROM product;
+> category 이름을 업데이트 하니 product에서도 따라 바뀌는거 확인
+
+>확인했으니 다시 바꾸기
+UPDATE category SET cate_name = '컴퓨터' WHERE cate_name = '컴퓨터2';
+
+
+- 외래키 무결성 제약조건 (부모를 지워버리면 누구를 따라가냐)
+update : 대분류를 번경하게 된다면.. 상품을..
+foreign키 옵션에 띄어쓰기 포함
+ON UPDATE cascade 
+
+delete : 대분류를 삭제하게 된다면..상품을..
+ON DELETE restrict
+
+--------------------------------------
+연결 table1, table2 연결해서 = 1 > 실제 join은 아님? > 옛날방식 join?
+category, product를 연결해서 (c)대분류, 상품번호, 상품명, 구매개수, 가격 순으로 출력
+(단, 대분류가 같은 것만 출력하시오)
+
+INSERT INTO product VALUES('102', '갤럭시 21', 2, 2, '스마트폰'); 
+>테스트용 상품등록
+
+SELECT * FROM 테이블명
+
+SELECT 
+category.cate_name, 
+product.pro_num, 
+product.pro_name, 
+product.pro_count, 
+product.pro_price 
+
+FROM category, product;
+
+>너무기네 > 별명 사용해서 다시
+
+SELECT 
+C.cate_name, 
+P.pro_num, 
+P.pro_name, 
+P.pro_count, 
+P.pro_price 
+FROM category C, product P
+WHERE C.cate_name = P.cate_name;
+
+
+조인(******중요*******)
+
+join
+inner join 테이블 2개
+SELECT 출력컬럼 FROM t1, t2 WHERE t1.컬럼 = t2.컬럼;
+= SELECT 출력컬럼 FROM t1 INNER JOIN t2 ON t1.컬럼 = t2.컬럼;
+
+테이블3개
+SELECT 출력컬럼 FROM t1 INNER JOIN t2 on t1.컬럼 = t2.컬럼 INNER JOIN t3 ON t2.컬럼 = t3.컬럼;
+
+테이블 2개 조인
+분류 테이블 컬럼 전부, 상품 테이블 컬럼 전부를 출력하시오
+
+SELECT C.*, P.* FROM category C INNER JOIN product P ON C.cate_name = P.cate_name;
+SELECT C.*, P.* FROM category C INNER JOIN product P ON C.cate_name = P.cate_name;
+
+
+분류 테이블의 분류 컬럼과 상품 테이블의 상품번호, 상품이름만 출력하시오.
+(t1 INNER JOIN t2 ON 조건)
+
+SELECT C.cate_name, P.pro_num, P.pro_name FROM category C INNER JOIN product P ON C.cate_name = P.cate_name;
+
+
+
+-----------------------------------------------------------------------------------------------
+다중 게시판 만들기
+config(게시판 설정)
+
+code 디비 테이블 이름 = notice -> creat table notice();
+
+create table config(
+code varchar(20) not null,
+title varchar(100) not null,
+color varchar(20) not null,
+primary key(code)
+);
+
+board(게시판)
+
+create table notice_board(
+b_id int not null auto_increment,
+subject varchar(100) not null,
+name varchar(10),
+content text,
+regdate date,
+code varchar(20) not null,
+primary key(b_id),
+foreign key(code) references config(code) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+
+
+
+
+
+
+DB
+(인사관리)
+
+pk, fk, -> inner join 
+t1, t2, t3
+
+대분류  소분류  상품등록
+
+부서    직책    사원
+dept    pos     emp
+
+
+use grpdb;
+
+create table dept(
+dept_name varchar(20) not null,
+primary key(dept_name)
+);
+
+INSERT INTO dept VALUES('인사과');
+INSERT INTO dept VALUES('비서실');
+INSERT INTO dept VALUES('임원실');
+
+create table pos(
+pos_name varchar(20) not null,
+dept_name varchar(20) not null,
+primary key(pos_name),
+foreign key(dept_name) references dept(dept_name)
+ON UPDATE cascade 
+ON DELETE restrict
+);
+
+INSERT INTO pos VALUES('대표이사','임원실');
+INSERT INTO pos VALUES('기술이사','임원실');
+
+INSERT INTO pos VALUES('비서실장','비서실');
+
+INSERT INTO pos VALUES('인사과장','인사과');
+INSERT INTO pos VALUES('대리','인사과');
+INSERT INTO pos VALUES('사원','인사과');
+
+
+임원실(2), 인사과(3), 비서실(1)
+부서별 직책의 수를 출력하시오.
+
+select *from pos;
+select dept_name, count(pos_name) FROM pos; -오류
+select dept_name, count(pos_name) FROM pos
+GROUP BY dept_name;
+
+단 직책 수가 2이상인 것만 출력
+select dept_name, count(pos_name) FROM pos
+GROUP BY dept_name
+HAVING COUNT(pos_name) >= 2;
+
+
+create table emp(
+emp_id int not null auto_increment,
+emp_email varchar(50) not null,
+emp_passwd varchar(20) not null,
+emp_name varchar(20) not null,
+pos_name varchar(20) not null,
+primary key(emp_id),
+foreign key(pos_name) references pos(pos_name)
+ON UPDATE cascade 
+ON DELETE restrict
+);
+
+
+INSERT INTO emp VALUES(NULL, 'mail@mail.com', '1234', '홍길동', '인사과장');
+INSERT INTO emp VALUES(NULL, 'mail2@mail.com', '4534', '이철동', '인사과장');
+
+INSERT INTO emp VALUES(NULL, 'mail3@mail.com', '3333', '나대표', '대표이사');
+
+INSERT INTO emp VALUES(NULL, 'mail4@mail.com', '0000', '김비서', '비서실장');
+
+INSERT INTO emp VALUES(NULL, 'mail5@mail.com', '8888', '너사원', '사원');
+
+
+직책별 사원의 수를 구하시오
+select *from emp;
+select pos_name, count(emp_name) from emp;
+select pos_name, count(emp_name) from emp
+GROUP BY pos_name;
+
+인사과장(2), 대표이사(1), 비서실장(1)
+직책별 사원 수를 구하시오 단 직책의 내림차순으로 출력하시오
+select *from emp;
+select pos_name, count(emp_name) from emp;
+select pos_name, count(emp_name) from emp
+GROUP BY pos_name order by P.pos_name DESC;
+
+t1(dept) t2(pos) t3(emp)
+
+부서(dept), 직책순으로 출력하시오(t1, t2)
+. . .  t1 INNER JOIN t2 ON t1.컬럼 = t2.컬럼
+
+SELECT D.dept_name as deptName , P.pos_name as posName FROM dept D
+INNER JOIN pos P ON D.dept_name = P.dept_name;
+
+
+부서(dept), 직책순, 사원명을 출력하시오(t1, t2, t3) - 3개 inner join
+. . .  t1 INNER JOIN t2 ON t1.컬럼 = t2.컬럼
+INNER JOIN t3 ON t2.컬럼 = t3.컬럼
+
+SELECT D.dept_name as 부서명, P.pos_name as 직책명, E.emp_name as 사원명 
+FROM dept D
+INNER JOIN pos P ON D.dept_name = P.dept_name
+INNER JOIN emp E ON P.pos_name = E.pos_name;
+
+부서명으로 오름차순 정렬
+SELECT D.dept_name as 부서명, P.pos_name as 직책명, E.emp_name as 사원명 
+FROM dept D
+INNER JOIN pos P ON D.dept_name = P.dept_name
+INNER JOIN emp E ON P.pos_name = E.pos_name
+order by D.dept_name ASC;
+
+정렬 후 최근 1개만 출력
+SELECT D.dept_name as 부서명, P.pos_name as 직책명, E.emp_name as 사원명 
+FROM dept D
+INNER JOIN pos P ON D.dept_name = P.dept_name
+INNER JOIN emp E ON P.pos_name = E.pos_name
+order by D.dept_name ASC LIMIT 0, 1;
+
+
+-------------------------------------------------------------------------------------------
+
+create, drop, alter
+
+insert, select, update, delete
+
+
+//답변형
+번호, 제목, 작성자, 작성일, 조회수, /[관리자]비고(수정/삭제)
+create table board(
+b_id int not null auto_increment,
+b_title varchar(255),
+b_writer varchar(10),
+b_date datetime,
+b_visit int,
+b_grp int,
+b_depth int,
+b_level int,
+primary key(b_id)
+);
+
+: grp 1번 게시물에대한 답변 그룹
+: depth 답글의 답글, 답글의 답글 깊이
+: level 답글화살표?
+
+
+
+INSERT INTO board(b_title,b_writer,b_date) VALUES('공지사항', '관리자', now());
+
+INSERT INTO board(b_title,b_writer,b_date) VALUES('답변형 게시판', '관리자2', now());
+
+INSERT INTO board(b_title,b_writer,b_date) VALUES('이미지 게시판', '관리자3', now());
+
+SELECT * FROM board;
+
+1. 전체 게시물 수를 출력하시오.
+SELECT * FROM board;
+
+2. 전체 게시물을 pk로 내림차순 정렬하시오
+SELECT * FROM board ORDER BY b_id desc;
+
+3. 게시물 중 가장 오래된 2개를 출력하시오
+SELECT * FROM board ORDER BY b_id desc LIMIT 0, 2;
+
+4. 게시물 제목이 '공지사항'인 것만 출력하시오
+SELECT * FROM board WHERE b_title = '공지사항';
+
+5. 게시물 제목이 '게시판'이란 글자를 포함하고 있는 값을 출력하시오.
+SELECT * FROM board WHERE b_title LIKE '%게시판%';
+
+6 게시물이 2023년에 등록된 자료만 내림차순으로 출력하시오.
+SELECT * FROM board WHERE b_date > '2023-01-01' ORDER BY b_date DESC;
+
+
+UPDATE 테이블이름 SET 변경할컬럼명 = '변경할값1', 변경할컬럼명2 = '변경할값2'. . . 
+WHERE 조건 = 값;
+
+1. pk가 1번 게시물의 작성자를 '홍길동'으로 수정하시오.
+UPDATE board SET b_writer = '홍길동' WHERE b_id = 1;
+
+2. pk가 1번 게시물의 작성자를 '김철수', 등록일을 현재날짜, 제목을 'QnA 게시판'으로 수정하시오.
+UPDATE board SET b_writer ='김철수', b_date = now() , b_title = 'QnA 게시판' WHERE b_id = 1;
+
+3. board 테이블의 작성자 이름을 모두 '코리아'로 수정하시오.
+UPDATE board SET b_writer ='코리아';
+
+--------------------------------------------------------------------------------------------------
+DDL : 
+DML : 
+DCL : GRANT, REVOKE, VIEW (컨트롤)
+
+
+DELETE 데이터 삭제
+SELECT * FROM board;
+
+게시판 제목이 '답변형 게시판'인 레코드를 삭제하시오.
+DELETE FROM board WHERE b_title = '답변형 게시판';
+SELECT * FROM board;
+
+게시판 제목이 '이미지 게시판'이면서 pk가 3인 레코드를 삭제하시오.
+DELETE FROM board WHERE b_title = '이미지 게시판' and b_id = 3;
+
+게시판 제목이 'QnA 게시판'이면서 pk가 1인 레코드를 검색하시오.
+SELECT * FROM board WHERE b_title = 'QnA 게시판' and b_id = 1;
+
+게시판 내용 전체를 삭제하시오.
+
+INSERT INTO 테이블명 VALUES();
+SELETE * FROM 테이블명;
+
+UPDATE 테이블명 SET 바꿀컬럼 = 바꿀값 WHERE 바꿀pk = 값;
+DELETE FROM 테이블명 WHERE 삭제할pk = 값;
+
+DELETE FROM board;
+
+CREATE View 보안 -> 필요한 컬럼만 보여줄 때
+
+물리테이블 X -> 논리적인 테이 블 (테이블 복사가 X) 링크
+
+CREATE TABLE MEMBER -> CREATE TABLE MEMBER2;
+
+번호, 아이디, 이름 , 비밀번호, 주소
+-> 번호, 주소
+
+CREATE VIEW MEMBER_V -> DROP VIEW MEMBER_V;
+
+>>
+테이블 : 번호, 이름, 주소, 주민번호 -> view
+
+원본
+
+CREATE TABLE member(
+id int not null auto_increment,
+name varchar(20),
+addr varchar(20),
+jumin char(14),
+primary key(id)
+);
+
+INSERT INTO member VALUES(NULL, '홍길동', '부산광역시', '001234-567890');
+
+CREATE VIEW member_v AS SELECT id, addr FROM member;
+
+SELECT * FROM member_v;
+
+CREATE TABLE member2 AS SELECT id, addr FROM member;
+
+drop view member_v;
+
+
+
+
+
+
+DDL
+DML
+DCL : 보안 -> GRANT(권한 설정), REVOKE(권한 제거)
+-------------------------------------------------------------------------------------
+1. 계정생성 - root로 접속 후 생성
+ (1) 계정 정보 확인 -> mysql 디비 -> user(host, user)
+ (2) 계정 이름 = 데이터베이스 이름은 동일하게 생성( 관리자가 부여)
+ (3) 계정 생성 후 생성된 디비에 권한 부여
+
+grp계정 , 1234 로 생성
+1) grp 디비 생성
+2) grp 계정 생성 : create user grp@'%' identified by '1234';
+3) 확인 
+> use mysql;  
+> select host, user from user;
+4) 권한부여 : grant all on grp.* to grp@'%' with grant option;
+5) flush privileges;
+6) 창닫고 접속 
+7) mysql -ugrp -p
+
+--------------------------------------------------------------------------------------
+
+<코리아아이티 아카데미 그룹웨어 프로그램>
+1. html, css, js -Ajax(Spring 서버 필요?)
+화면구성
+
+2. Database 설계
+부서명, 직책명, 사원가입, (우편번호검색기?)
+게시판환경설정, 게시판, (댓글)
+
+3. Spring Boot (연결?)
+
+
+---------------------------------------------------------------------------------------------
+2. Database 설계
+부서명, 직책명, 사원가입, (우편번호검색기?)
+게시판환경설정, 게시판, (댓글)
+
+부서 테이블
+create table dept(
+dept_code char(3) not null,
+dept_name varchar(20) not null,
+primary key(dept_code)
+);
+
+insert into dept values('100', '인사과');
+insert into dept values('200', '자재과');
+insert into dept values('300', '비서실');
+insert into dept values('900', '임원실');
+
+select *from dept;
+select count(dept_code) as '부서' from dept;
+select *from dept ORDER BY dept_code desc;
+
+
+직급 테이블
+101 인사과장 100
+
+create table pos(
+pos_code char(3) not null,
+pos_name varchar(10) not null,
+dept_code char(3) not null,
+primary key(pos_code),
+foreign key(dept_code) references dept(dept_code) ON UPDATE cascade ON DELETE restrict
+);
+
+직책코드 직책명 부서코드
+INSERT INTO pos VALUES('101', '인사과장', '100');
+INSERT INTO pos VALUES('103', '사원', '100');
+
+INSERT INTO pos VALUES('301', '비서실장', '300');
+
+INSERT INTO pos VALUES('901', '대표이사', '900');
+INSERT INTO pos VALUES('902', '기술이사', '900');
+
+2단 정렬할때는 order by는 한번만 적고 ( , ) 사용한다
+select * from pos ORDER BY dept_code DESC, pos_name desc; 
+
+임원실 검색
+select * from pos where dept_code = '900';
+
+
+사원등록 테이블
+CREATE TABLE emp(
+emp_id int not null auto_increment,
+emp_email varchar(50) not null,
+emp_passwd varchar(20) not null,
+emp_name varchar(10) not null,
+pos_code char(3) not null,
+primary key(emp_id),
+foreign key(pos_code) references pos(pos_code) ON UPDATE cascade ON DELETE restrict
+);
+
+INSERT INTO emp VALUES(NULL, '1mail@mail.com', '1111', '홍길동', '101');
+
+인사과(2) 비서실(1) 임원실(2) : join, 일반컬럼 + 집계컬럼 => group by사용
+
+SELECT A.dept_name, COUNT(B.pos_code) FROM dept A INNER JOIN pos B on A.dept_code = B.dept_code
+GROUP BY A.dept_name;
+
+3단 JOIN
+인사과 인사부장 홍길동 순으로 출력하시오.
+t1 INNER JOIN t2 ON t1.pk = t2.fk
+INNER JOIN t3 ON t2.pk = t3.fk;
+
+SELECT A.dept_name as '부서', B.pos_name as '직책', C.emp_name as '이름' 
+FROM dept A INNER JOIN pos B ON A.dept_code = B.dept_code
+INNER JOIN emp C ON B.pos_code = C.pos_code;
+
+사원테이블에서 직책이 '101'이고 사원번호 1번인 사원의 
+사원명을 '김철수'로 변경하시오.
+
+UPDATE 테이블명 SET 변경 WHERE 조건 = 값 AND 조건 = 값;
+UPDATE emp SET emp_name = '김철수' WHERE pos_code = '101' AND emp_id = 1;
+
+이름이 김철수인 사원의 이메일을 'busan@busan.co.kr', 이름을 '홍길동'으로 변경하시오
+
+UPDATE emp SET emp_email = 'busan@busan.co.kr', emp_name = '홍길동' where emp_name = '김철수';
+
+이메일이 'busan@busan.co.kr' 이거나 비밀번호가 '1111'인 사원의 정보를 삭제하시오.
+DELETE FROM emp WHERE emp_email = 'busan@busan.co.kr' OR emp_passwd = '1111';
+
+select *from emp;
+
+View : 논리적(가상) 데이블을 생성해 보안 처리
+CREATE VIEW emp_v AS select emp_email, emp_name from emp;
+
+View 제거 
+drop view 테이블이름;
+drop view emp_v;
+show tables;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
