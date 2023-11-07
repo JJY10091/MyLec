@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        footer {
+            background-color: #24262b;
+            padding: 80px 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .flex-wrap {
+            display: flex;
+
+        }
+
+        .footer-item {
+            width: 25%;
+        }
+
+        .footer-item h4 {
+            color: #fff;
+            font-weight: normal;
+            font-size: 18px;
+            text-transform: capitalize;
+            margin-bottom: 30px;
+        }
+
+        .footer-item h4::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: tomato;
+            margin-top: 5px;
+        }
+
+        .footer-item a {
+            color: #a7a5a5;
+            font-size: 16px;
+            text-transform: capitalize;
+            font-weight: lighter;
+            transition: all 0.3s ease;
+        }
+
+        .footer-item a:hover {
+            color: #fff;
+            padding-left: 8px;
+        }
+
+        .social-wrap a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+
+            /* 넓이 안먹히니까 inline형태의 block */
+            display: inline-block;
+            text-align: center;
+
+            /* 세로정렬 : flex 쓰는방법, 줄간격주는 방법 line-hegight(자식이 1개있을때만)
+            line-hegight값을 높이값과 동일하게 주는방법 */
+            line-height: 40px;
+            margin-right: 10px;
+        }
+
+        
+        .social-wrap a:hover {
+            padding: 0;
+            background-color: #fff;
+            color: #24262b;
+        }
+
+
+        @media (max-width:600px) {
+            .flex-wrap {
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .footer-item {
+                width: 100%;
+                padding: 0 20px;
+                text-align: center;
+            }
+
+            .footer-item h4 {
+                position: relative;
+            }
+
+            .footer-item h4::after {
+                width: 40px;
+                position: absolute;
+                left: 50%;
+                bottom: -10px;
+                transform: translateX(-50%);
+
+            }
+
+            .footer-item:not(:last-child) {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <footer>
+        <div class="container">
+            <div class="flex-wrap">
+                <div class="footer-item">
+                    <h4>Company</h4>
+                    <ul>
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">Our Services</a>
+                        </li>
+                        <li>
+                            <a href="">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="">Affiliate Program</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-item">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">Our Services</a>
+                        </li>
+                        <li>
+                            <a href="">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="">Affiliate Program</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-item">
+                    <h4>Online Shop</h4>
+                    <ul>
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">Our Services</a>
+                        </li>
+                        <li>
+                            <a href="">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="">Affiliate Program</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-item">
+                    <h4>Follow Us</h4>
+                    <div class="social-wrap">
+                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

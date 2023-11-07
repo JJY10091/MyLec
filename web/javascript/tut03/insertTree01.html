@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert Tree</title>
+</head>
+
+<body>
+    <h1>BackEnd Programing</h1>
+    <p>HTML/CSS/JS</p>
+    <p>Spring Boot</p>
+
+    <button>제목 제거하기</button>
+    <!-- <p>Database</p> -->
+    <!-- p[0]뒤에 넣어보기 -->
+
+    <script>
+        // document.querySelectorAll() : 같은 태그를 배열로 가져옴
+        let bagicTag = document.querySelectorAll("p")[1];
+        let addTag = document.createElement("p");
+        let addText = document.createTextNode("Database");
+        addTag.appendChild(addText);
+        document.body.insertBefore(addTag, bagicTag); //기준태그 앞에 삽입
+
+        document.querySelector("button").addEventListener('click',function(e){
+            e.preventDefault();
+
+            document.querySelector("h1").remove();
+        });
+    </script>
+</body>
+
+</html>

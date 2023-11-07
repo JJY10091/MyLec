@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 디비 : 레코드(튜플) = row = 행
+        // 오브젝트, 1명분 데이터, 객체
+        // forEach
+
+        // obj 
+        //javascript객체 = {key:value} <=> HashMap<> : key,value
+        let user = {
+            userid : "koreait",
+            passwd : "1234"
+        }
+
+        console.log(user);
+        console.log(user.userid);
+        console.log(user.passwd);
+
+        console.log(user["userid"]);
+        console.log(user["passwd"]);
+
+
+        console.log("-----------------------------");
+
+        //빈객체 선언
+        let user1 = {};
+        user1 = new Object();
+        
+        user1.email = "mail@mail.com";
+        user1.addr = "부산광역시";
+        
+        console.log(user1);
+        console.log(user1.email);
+        console.log(user1.addr);
+
+
+        /*  json 객체
+        let user = '{"userid": "koreait","passwd": "1234"}';
+        */
+
+        // 디비 : 테이블
+        // 여러줄, 여러명, 리스트 ... 
+        // forIn
+        // 대배열
+        // let users = [
+        //     {
+        //         username: "홍길동",
+        //         addr : "부산광역시"
+        //     },
+
+        //     {
+        //         username: "이영희",
+        //         addr: "서울특별시"
+        //     }
+        // ];
+
+        
+    </script>
+</body>
+
+</html>

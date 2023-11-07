@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주소록</title>
+
+    <style>
+        li {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        table {
+            /* 테이블 사이 간격 없애기 */
+            border-collapse: collapse;
+
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th:nth-child(1) {
+            width: 30%;
+        }
+
+        th:nth-child(2) {
+            width: 70%;
+        }
+
+        th,
+        td,
+        tr {
+            border: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        button {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>코리아아이티 주소록</h1>
+        <form>
+            <ul>
+                <li>
+                    <label>이름</label>
+                    <input type="text" id="username" />
+                </li>
+                <li>
+                    <label>주소</label>
+                    <input type="text" id="address" />
+                </li>
+            </ul>
+            <button>주소 등록하기</button>
+        </form>
+
+        <table id="addList">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>주소</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        let btn = document.querySelector("button");
+        let name = document.querySelector("#username");
+        let addr = document.querySelector("#address");
+
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (name.value != "" && addr.value != "") {
+
+                let addTr = document.createElement("tr");
+                let addTdName = document.createElement("td");
+                let addTdAddr = document.createElement("td");
+
+                let valTdName = document.createTextNode(name.value);
+                let valTdAddr = document.createTextNode(addr.value);
+
+                addTdName.appendChild(valTdName);
+                addTdAddr.appendChild(valTdAddr);
+
+                addTr.appendChild(addTdName);
+                addTr.appendChild(addTdAddr);
+
+                document.querySelector("tbody").appendChild(addTr);
+
+                name.value = "";
+                addr.value = "";
+            } else {
+                alert("이름 주소 모두 입력");
+            }
+        })
+
+    </script>
+</body>
+
+</html>
