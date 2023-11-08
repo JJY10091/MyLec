@@ -337,14 +337,6 @@ SELECT * FROM member 조건, 정렬, Limit;
 
 
 
-
-
-
-
-
-
-
-
 1. Mysql 데이터베이스
 mysql.com - downloads 
 
@@ -377,6 +369,7 @@ GRANT ALL privileges ON koreait TO koreait@'localhost' with grant option;
 alter user koreait@'%' identified with mysql_native_password by '1234';
 flush privileges; 
 ***********************/ 
+
 (2) GUI로 계정만들기
 
 
@@ -432,7 +425,7 @@ ALTER TABLE tbl_article DROP COLUMN tbl_article_content;
 SELECT item_name FROM items WHERE item_name IS NULL;
 SELECT item_name FROM items WHERE item_name IS NOT NULL;
 
-
+내용 변경 > UPDATE 사용
 
 
 
@@ -1568,7 +1561,7 @@ grp계정 , 1234 로 생성
 3) 확인 
 > use mysql;  
 > select host, user from user;
-4) 권한부여 : grant all on grp.* to grp@'%' with grant option;
+4) 권한부여 : grant all (//생략가능? privileges//) on grp.* to grp@'%' with grant option;
 5) flush privileges;
 6) 창닫고 접속 
 7) mysql -ugrp -p
