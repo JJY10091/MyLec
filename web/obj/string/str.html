@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //입력한 이메일에 @이 있으면 사용할 수 있다. 없으면 없다.
+        let email = "koreait@koreait.co.kr";
+        let cnt = 0;
+        console.log(email.length);
+
+        /*
+        function checkEmail() {
+            for(let i = 0 ; i < email.length; i++){
+                if(email[i] == "@"){
+                    cnt++;
+                }
+            }
+            return cnt;
+        }
+
+        if( checkEmail() > 0){
+            console.log("사용할수 있는 이메일입니다.");
+        }else {
+            console.log("알맞지 않는 이메일입니다.");
+        }
+        */
+
+        email.indexOf("@") //@가 있나요, 있으면 인덱스 번호 없으면 -1
+        console.log(email.indexOf("@"));
+ 
+        if(email.indexOf("@") > -1){
+            console.log("사용하셔도 됩니다.");
+        }else{
+            console.log("이메일 형식에 맞지 않습니다.");
+        }
+
+        if(email.indexOf(".") > -1){
+            console.log("도메인 형식이 맞지 않습니다.")
+        }
+
+        // indexOf() -> 숫자 리턴
+        // includes() -> boolean 리턴
+
+        // console.log(email.includes("@"));
+
+        if(email.includes("@")){
+            console.log("사용하셔도 됩니다.");
+        }else {
+            console.log("이메일 형식에 맞지 않습니다.");
+        }
+
+        
+        
+
+    </script>
+</body>
+
+</html>
