@@ -1,0 +1,78 @@
+
+
+1. mysql (maridb)
+2. oracle  :  (GUI)sqldeveloper(jdk 포함)  -> toad
+
+sqldeveloper 다운로드
+
+root계정 접속
+sqlplus > system > 1234
+sqlplus system > 1234
+sqlplus system/1234
+
+1. 일반 계정 생성
+- system 계정 접속
+- 계정생성 / 접속권한(db 생성 x) -> 용량 제한 해제
+- sqlplus -> system -> 1234 
+- CREATE USER testdb identified by 1234; -> 오류남 
+- CREATE USER c##testdb identified by 1234;
+- 보안 해제 하면 위에 명령어 먹힘(c##생략가능해짐)
+  ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+
+  CREATE USER scott identified by tiger;
+  GRANT connect, resource, dba to scott;
+  (ALTER USER scott default tablespace users quota unlimited on users;) -생략 가능 용량 제한 해제
+  
+  commit;
+
+<sqpdeveloper>
+도구 - 환경 - 인코딩 UTF-8 
+       - 코드 편집기 - 글꼴 - 한글 안깨지게
+
+mysql->oracle
+varchar -> varchar2
+int -> number
+now -> sysdate
+auto_increment 사용x
+
+회원가입 테이블 만들기
+member
+아이디, 이름, 비밀번호, 성별, 급여
+
+CREATE TABLE member(
+userid varchar2(20),
+username varchar2(10),
+passwd varchar2(20),
+gender char(1),
+salary number
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
