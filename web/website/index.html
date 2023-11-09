@@ -11,7 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body id="top">
     <nav>
         <div class="container">
             <div class="nav__logo">
@@ -28,7 +28,7 @@
             </ul>
             <div class="bars">
                 <i class="fa-solid fa-bars"></i>
-                <!-- <i class="fa-solid fa-angle-up"></i> angle up -->
+                
             </div>
         </div>
     </nav>
@@ -47,6 +47,90 @@
             </div>
         </div>
     </header>
+
+    <section class="one">
+        <div class="journey__container">
+            <div class="journey__title">
+                <h2>Start Your Journey</h2>
+                <p>The most searched contries in March.</p>
+            </div>
+            <div class="journey__content">
+                <div class="country_box">
+                    <img src="images/country-1.jpg" alt="country1">
+                    <div class="country_name">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <span>Santorini, Greece</span>
+                    </div>
+                </div>
+
+                <div class="country_box">
+                    <img src="images/country-2.jpg" alt="country2">
+                    <div class="country_name">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <span>Vernazza, Italy</span>
+                    </div>
+                </div>
+
+                <div class="country_box">
+                    <img src="images/country-3.jpg" alt="country3">
+                    <div class="country_name">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <span>San Francisco</span>
+                    </div>
+                </div>
+
+                <div class="country_box">
+                    <img src="images/country-4.jpg" alt="country4">
+                    <div class="country_name">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <span>Navagio, Greece</span>
+                    </div>
+                </div>
+
+                <div class="country_box">
+                    <img src="images/country-5.jpg" alt="country5">
+                    <div class="country_name">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <span>Ao Nang, Thailand</span>
+                    </div>
+                </div>
+
+                <div class="country_box">
+                    <img src="images/country-6.jpg" alt="country6">
+                    <div class="country_name">
+                        <i class="fa-solid fa-thumbtack"></i>
+                        <span>Phi Phi Island, Thailand</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <a href="#top" class="go-up">
+        <i class="fa-solid fa-angle-up"></i>
+    </a>
+
+    <script>
+        let nav = document.querySelector("nav");
+        let go = document.querySelector(".go-up");
+
+        document.addEventListener('scroll', function () {
+            // 스크롤 해서 아래로 내려갈때 내 위치
+            // console.log(window.scrollY);
+
+            let myPos = window.scrollY;
+            if (myPos > 300) {
+                nav.style.backgroundColor = "#29323c";
+                nav.classList.add("active");
+                go.classList.add("view");
+            }else {
+                nav.style.backgroundColor = "transparent";
+                go.classList.remove("view");
+            }
+        });
+
+    </script>
 </body>
 
 </html>
