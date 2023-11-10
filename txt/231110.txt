@@ -1,0 +1,319 @@
+oracle 
+JOIN 해보기
+
+
+부서 : dept
+코드, 이름
+
+create table dept(
+dept_code varchar2(3),
+dept_name varchar2(10),
+primary key(dept_code)
+);
+
+insert into dept values('100','인사과');
+insert into dept values('200','자재과');
+insert into dept values('300','비서실');
+insert into dept values('900','임원실');
+
+select * from dept;
+
+시퀀스 : emp_seq
+create sequence emp_seq start with 1 increment by 1 minvalue 1 maxvalue 9999 nocycle nocache;
+select * from user_sequences;
+
+사원등록 : emp
+시퀀스번호, 이름, 비번, 키, 성별, 날짜
+
+create table emp(
+emp_num number not null,
+emp_name varchar2(10),
+emp_passwd varchar2(20),
+emp_height number(5,2), 
+emp_gender char(1),
+emp_regdate date,
+dept_code varchar2(3),
+primary key(emp_num),
+foreign key(dept_code) references dept(dept_code)
+);
+
+// number(5,2) : 소수점2자리 포함 5자리 수 
+
+select * from tab;
+
+INSERT INTO emp VALUES(emp_seq.nextval, '홍길동', '1111', 190.12 , 'M', sysdate, '100' );
+INSERT INTO emp VALUES(emp_seq.nextval, '이영희', '1234', 160.72 , 'F', sysdate, '200' );
+INSERT INTO emp VALUES(emp_seq.nextval, '김철수', '5789', 180.51 , 'M', sysdate, '300' );
+INSERT INTO emp VALUES(emp_seq.nextval, '나대표', '5789', 180.512345 , 'M', sysdate, '900' );
+select * from emp;
+select emp_num from emp;
+
+drop table emp;
+drop table dept;
+drop sequence emp_seq;
+
+1개만 출력
+select * from emp where rownum <=1;
+
+select * from emp where rownum <=2 order by emp_num desc;
+=
+
+내부쿼리(select 안에 select 정렬)
+select * from (select *from emp order by emp_num desc) where rownum <= 2;
+
+
+INNER JOIN ~ ON
+
+dept, emp 
+내부 조인
+select * from dept D inner join emp E on D.dept_code = E.dept_code;
+select D.dept_name, E.emp_name, E.emp_regdate from dept D inner join emp E on D.dept_code = E.dept_code;
+
+
+
+*********************조인 -> 그룹*************
+인사과(1), 자지과(1), 비서시(1)
+
+count(key로 지정된거)
+
+select D.dept_code, D.dept_name, count(E.emp_num) from dept D inner join emp E on D.dept_code = E.dept_code 
+group by 집계함수 빼고 앞에있는 나머지 다 적어라;
+->
+select D.dept_code, D.dept_name, count(E.emp_num) from dept D inner join emp E on D.dept_code = E.dept_code 
+group by D.dept_code, D.dept_name;
+
+
+사원 수가 10명 이상인 부서(사원수) 표시하시오.
+group by ~ having (집계컬럼)사용
+->
+select D.dept_code, D.dept_name, count(E.emp_num) from dept D inner join emp E on D.dept_code = E.dept_code 
+group by D.dept_code, D.dept_name HAVING count(E.emp_num) >= 1 ;
+
+select D.*, count(E.emp_num) from dept D inner join emp E on D.dept_code = E.dept_code 
+group by D.dept_code, D.dept_name HAVING count(E.emp_num) >= 1 ;
+
+
+cf
+표준 SQL = ANSI SQL
+
+----------------------------------------------------------------------------------
+JSON
+
+
+스피링 > 웹(서버 : tomcat) 필요
+1. tomcat 별도 설치 -> Spring framework
+2. 내장형 tomcat -> Spring Boot
+   
+- 과정형 자격증 웹 : jsp (시험때 필요한) + oracle >>실무x
+
+
+<개발툴 intellij 다운받기>
+intelli j (com : 비상용, ulti : 상용)
+
+ibm
+eclipse - sts
+
+jetBrain(화면디자인프로그램) - intellij community버전(무료)
+-> android studio
+
+-----------------------------------------------------------------------
+javascript - tut04
+tut04_01.html
+매개변수가 있는 함수
+
+tut04_02.html
+구조분해할당
+
+------------------------------------------------------------------------------
+
+intellij에서 내장서버사용?
+
+view 
+
+ajax -> javascript  -> jquery(추가 lib필요)
+
+server -> 
+스프링부트에서 사용할 내장형 tomcat 또는 추가 프로그램
+web(spring할때 필수), lombok(게터세터 생략할수 있게), thymeleaf(html+프로그래밍), mysql,
+???프로그램 (sql-spring연결해주는) 
+
+-> start.spring.io
+Maven 사용 (데이터베이스 + 스프링 연결)
+- @(어노테이션) 방식 : 부트 버전 3.0이상
+- xml 방식 
+스냅샷, RC는 사용 x
+
+
+Group : 도메인 이름, 없으면 그냥
+Artifact - ajax
+packaging - jar사용
+java 버전 - 21(20을 해야하는데)
+add dependencies - web검색 -> spring web(필수)추가 
+generate
+
+다운 ->압축 여기에 풀기
+
+
+java - 자바파일
+
+resource 
+ - static : css, js, images
+ - template : html
+
+application 서버 설정(포트번호 설정)
+spring port번호 
+
+아무것도 안적으면
+
+java->com.example.ajax>패키지 생성
+controller : 실행주소관리 또는 파일 전달 패키지
+AjaxController.java
+
+
+http://도메인:포트번호/실행주소
+
+> defualt = 8080, 보안상 포트번호 바꿀게 application열고
+server.port = 7000~9999
+
+------------------------------------------------------------------------------
+ajax - src - java - com.example.ajax-controller - AjaxController.java
+
+@Controller
+@GetMapping
+
+controller에서 사용된 주소 
+
+localhost:9999/welcome
+localhost:9999/getjs
+localhost:9999/setjs
+
+
+get 또는 post 전송 방식
+
+서버(Spring) <-json으로 통신-> 클라이언트(html, js)
+@ResponseBody = json으로 html 주고받음(json 처리)
+@CrossOrigin 주고 받을 때 보안 일시적으로 해제
+
+Map<String, Object>로 보낸다
+
+
+---------------------------------------------------------------------------------
+intellij ( jetBrains )  다운 - community 버전 다운 -설치
+start.spring.io - maven , java , Spring-Boot 3.1.5버전 , artifact : ajax로 수정 , java 17버전
+Dependencies - Spring Web 선택 
+GENERATE -> intellij 실행-열기- ajax 폴더 선택
+ajax - src - main - resources application.properties >> server.port:7000~9999 설정
+ajax - src - main - java - com.example.ajax 밑에 controller패키지 > AjaxController.java파일에 하위주소 실행코드
+
+
+
+---------------------------------------------------------------
+보안레이어
+SSL : 서버에 설치 > https://
+
+설치안하면 > http://
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
