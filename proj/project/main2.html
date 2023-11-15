@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹개발 프로젝트</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+
+
+        nav {
+            padding: 20px 15px;
+            background-color: rgba(70, 80, 70, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .container {
+            width: 1280px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        nav .nav_logo {
+            padding-left: 50px;
+        }
+
+        .nav_menu {
+            display: flex;
+
+        }
+
+        .nav_menu li {
+            padding-left: 10px;
+        }
+
+        header {
+            padding: 80px;
+            height: 100vh;
+            background-color: rgb(228, 193, 193);
+        }
+        .find_container {
+            width: 100%;
+            max-width: 1280px;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            margin: 0 auto;
+             
+        }
+
+        .search-box {
+            width: 400px;
+            height: 35px;
+            padding: 0 5px;
+            border: 1px solid black;
+        }
+        .search {
+            height: 100%;
+            border: none;
+            width: 85%;
+        }
+
+        button {
+            width: 13%;
+            padding-bottom: 5px;
+            text-align: none;
+        }
+
+        form div {
+            margin-top: 30px;
+        }
+
+        section {
+            background-color:rgb(228, 193, 193);
+            margin-top: 10px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="top-box"></div>
+    <nav>
+        <div class="container">
+            <div class="nav_logo">
+                <h2>
+                    <a href="">Logo</a>
+                </h2>
+            </div>
+
+            <ul class="nav_menu">
+                <li><a href="">커뮤니티</a></li>
+                <li><a href="">Q&A</a></li>
+                <li><a href="">약국찾기</a></li>
+                <li><a href="">로그인</a></li>
+                <li><a href="">회원가입</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="find_container">
+            <form action="">
+                <div class="search-box">
+                    <input type="text" class="search">
+                    <button>검색</button>
+                </div>
+
+                <div class="radio-box">
+                    <input type="radio" name="gender">남자
+                    <input type="radio" name="gender">여자
+                </div>
+
+                <div class="check-box">
+                    <input type="checkbox">체크1
+                    <input type="checkbox">체크2
+                    <input type="checkbox">체크3
+                    <input type="checkbox">체크4
+                </div>
+            </form>
+        </div>
+    </header>
+
+    <section>
+        <div class="section_1">
+            <div class="board">게시판</div>
+        </div>
+
+        <div class="section_2">
+            <div class="search_map"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="copywriter">
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

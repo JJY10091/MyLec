@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .wrap-menu {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+
+        }
+
+        h1 {
+            padding-left: 200px;
+        }
+
+        .wrap-menu ul {
+            display: flex;
+        }
+
+        .wrap-menu ul li {
+            list-style: none;
+            padding: 20px;
+        }
+
+        .wrap-menu ul li:nth-child(4) {
+            padding-right: 50px;
+        }
+
+        .search {
+            padding: 2px 0;
+        }
+
+        main section {
+            padding: 200px 0;
+        }
+
+        .section-wrap {
+            display: flex;
+        }
+
+        .category {
+            width: 100px;
+            background-color: #ccc;
+            text-align: center;
+            padding-top: 0;
+        }
+
+        .category ul li {
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            width: 400px;
+            height: 35px;
+            padding: 0 5px;
+            border: 1px solid black;
+        }
+        
+        .search {
+            height: 100%;
+            border: none;
+            width: 85%;
+        }
+        
+        button {
+            width: 13%;
+            padding-bottom: 5px;
+            text-align: none;
+        }
+
+        .content-wrap {
+            width: 100%;
+            margin: 0 10px;
+        }
+
+        section {
+            margin-bottom: 10px;
+            background-color: rgb(181, 159, 202);
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="wrap-menu">
+                <h1>logo</h1>
+                <ul>
+                    <li>게시판</li>
+                    <li>메뉴2</li>
+                    <li>메뉴3</li>
+                    <li>로그인</li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="input-wrap">
+            <ul>
+                <li>
+                    <div class="search-box">
+                        <input type="text" class="search" >
+                        <button>검색</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="section-wrap">
+            <section class="category">
+                <ul>
+                    <li>커뮤니티</li>
+                    <li>Q & A</li>
+                    <li>약국 찾기</li>
+                    <li>기타1</li>
+                    <li>기타2</li>
+                </ul>
+            </section>
+            <div class="content-wrap">
+                <section class="main-content1">content2</section>
+                <section class="main-content2">content3</section>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
