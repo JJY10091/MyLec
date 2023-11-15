@@ -1,0 +1,271 @@
+컴퓨터이름 한글, 띄어 쓰기 사용 x, 윈도우 pro 에디션(home x) >> oracle 사용할때
+
+----------------------------- Oracle ---------------------------------
+select * from user_sequences;
+drop sequence emp_seq;
+
+부서 테이블, 시퀀스x
+
+create table buseo(
+buseo_code varchar2(3) not null,
+buseo_name varchar2(30) not null,
+primary key(buseo_code)
+);
+select * from tab;
+
+insert into buseo values('100', '인사과');
+insert into buseo values('200', '자재과');
+insert into buseo values('300', '비서실');
+
+select * from buseo;
+
+사원 테이블 -> 시퀀스
+create table emp(
+emp_num number not null,
+emp_kor_name varchar2(10),
+emp_eng_name varchar2(20),
+emp_jumin char(14),
+emp_gender char(1),
+emp_point number(3,2),
+emp_regdate date,
+primary key(emp_num)
+);
+
+create sequence emp_seq start with 1 increment by 1 minvalue 1 maxvalue 9999 nocycle;
+select * from user_seqences;
+
+insert into emp values(emp_seq.NEXTVAL, '홍길동', 'Hong gil-dong', '001234-5678901', 'M', '1.24', sysdate);
+
+insert into emp values(emp_seq.NEXTVAL, '김부산', 'Kim busan', '124587-8457632', 'F', '2.24', sysdate);
+insert into emp values(emp_seq.NEXTVAL, '나서울', 'Na seoul', '554876-5498621', 'M', '3.14', sysdate);
+
+select * from emp;
+
+-------------------------------------------------------------------------
+조건 
+이름이 김부산, 나서울 출력
+
+select * from emp where emp_kor_name = '김부산' or '나서울'; (x) 구문 오류
+select * from emp where emp_kor_name = '김부산' or emp_kor_name = '나서울'; (o)
+select * from emp where emp_kor_name in('김부산', '나서울');
+
+select * from emp where emp_kor_name != '김부산' and emp_kor_name != '나서울'; (o)
+select * from emp where emp_kor_name not in('김부산', '나서울');
+
+
+-영문자 대/소문자 변환
+select UPPER(emp_eng_name) FROM emp;
+
+select LOWER(emp_eng_name) FROM emp;
+
+-첫글자만 대문자
+select initcap(emp_eng_name) FROM emp;      
+
+
+좌우공백제거하고 (양쪽 끝에 공백만 제거) -> 가운데 공백제거하려면 replace로 replace(element, ' ', '');
+
+trim()
+select trim(emp_eng_name) from emp;
+
+select upper(trim(emp_eng_name)) from emp;
+
+select initcap(trim(emp_eng_name)) from emp;
+
+공백제거 대문자 왼쪽 1글자만
+substr(값, 시작번호, 개수)
+select substr(upper(trim(emp_eng_name)), 0, 1) from emp;
+
+--------------------------
+문자열 길이(byte) 체크 : 데이터베이스에서 처리하는 방식에 따라 값이 달라
+select emp_eng_name, length(emp_eng_name) from emp;
+
+select emp_kor_name, length(emp_kor_name) from emp;
+
+byte 체크
+select emp_kor_name, lengthb(emp_kor_name) from emp;
+
+--------------------------------------------------
+
+개수 출력 (정렬 후 사용해야)
+
+-mysql
+정렬 limit  개수,
+정렬 limit 시작, 개수
+
+-oracle
+
+*
+정렬 fetch first 개수 rows only;
+정렬 offset 시작번호 row fetch first 개수 rows only;
+
+select * from emp order by emp_num desc;
+
+제일 위 1개만
+select * from emp order by emp_num desc fetch first 1 rows only;
+
+2번째 1개
+select * from emp order by emp_num desc offset 1 row fetch first 1 rows only;
+
+---------------------------------------------------------
+
+replace
+'M' 을 '남'로 바꾸시오 replace(element, 값, 바꿀값)
+
+select replace(emp_gender, 'M', '남') from emp;
+
+ceil -> +면 올림한 값, - 내림값
+
+ex) 1 / 10인 게시물 -> ceil(0.1) => 1페이지
+
+floor -> +면 내림값, - 올림값
+
+select emp_point, ceil(emp_point) from emp;
+
+select emp_point, ceil(emp_point), floor(emp_point) from emp;
+
+-----------------------------------------------
+날짜를 yyyy.mm.dd로 표시하시오 to_char(값, 포맷)
+
+select emp_regdate from emp;
+
+select to_char(emp_regdate, 'yyyy.mm.dd hh:mi:ss') from emp;
+
+select to_char(emp_regdate, 'yyyy.mm.dd hh24:mi:ss') from emp;
+
+
+---------------------------------------------------------------------------
+start.spring.io -> 
+- web 의존성관리(프로그램 설치) 필수
+- html 작업 하려면 : thymeleaf 필수
+- 객체 작업 생략 : lombok
+- 데이터베이스 : sqlconnector?
+
+jar - 개발용
+war - 서비스용
+
+resources
+
+
+@Controller : 주소 또는 데이터 출력 또는 html로 전달
+@ResponseBody - > 데이터 출력
+
+패키지(프로그램 동작과 관련 x) - 파일 분리, 관리
+-controller : 주소 또는 데이터 출력 또는 html로 전달
+@Controller : 주소관리
+@ResponseBody : 데이터 관리(json)
+= @RestController (둘 합친거)
+
+-dto : 객체
+@Data
+
+-(service) : 추가 작업이 필요할 때 (paging)
+@Service
+
+-mapper : 데이터베이스 자료 처리(DML)
+@Repository - 글자나 데이터를 json방식으로 처리
+
+-작업준비
+4개 패키지 생성(controller ,dto , service, mapper)
+
+TestController.java
+
+ @GetMapping("/welcome")
+ @ResponseBody
+    public String welcome() {
+        return "Welcome Busan It Academy";
+    }
+}
+
+localhost:9999/welcome 접속
+글자 출력
+@ResponseBody가 없으면 html 파일을 찾는다.
+
+ ----------------
+ @GetMapping("/welcome")
+ @ResponseBody
+    public Map<String, String> welcome() {
+        return Map.of("userid", "koreati");
+    }
+
+Map 약식 출력
+  => Map.of : object를 출력할수 있게 
+
+------------------------------------
+web, thymleaf  사용
+
+cf. package 보기
+tree appearence - compact middle packages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

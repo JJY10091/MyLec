@@ -1,0 +1,83 @@
+tut02 
+
+작업순서
+html > (db) > 객체, controller -> mappers -> (service) -> controller
+
+html 작업
+templates
+-admin
+주소		파일
+/admin		/admin/index.html
+/admin/employees	/admin/employees.html
+/admin/article	/admin/article.html
+
+-users 
+/users/login	/users/login.html
+/users/register	/users/register.html
+
+/		/index.html
+
+
+tut03
+lombok : getter ,setter 자동생성
+회원가입 이메일 비밀번호 정보 서버로 가져오기
+
+회원가입
+
+/users/register -> users/register.html
+
+RegController.java
+
+객체 작업
+dto 패키지
+RegDto.java
+
+
+tut04
+회원가입 페이지 > ajax
+초기 화면을 띄울때는 get 방식임
+form에 있는 자료들은 post방식임
+
+/users/register	/users/register
+
+controller
+-RegController.java
+
+dto
+-RegDto.java
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

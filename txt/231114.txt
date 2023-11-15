@@ -1,0 +1,191 @@
+프로젝트
+관리자페이지  사용자페이지  로그인/회원가입  
+이미지 올릴때 모달
+자바 List, MAP 복습
+--------------------------------
+Oracle
+
+linux 계정 접속 -> db 일반계정 접속 -> db root계정 변경
+
+조인, 데이터 개수 처리
+
+TABLE
+buseo
+emp
+
+--조인
+
+select * from 부모 INNER JOIN 자식 ON 부모.pk = 자식.fk
+
+select * from buseo B INNER JOIN emp E ON B.buseo_code = E.buseo_code;
+select B.* from buseo B INNER JOIN emp E ON B.buseo_code = E.buseo_code;
+select B.*, E.* from buseo B INNER JOIN emp E ON B.buseo_code = E.buseo_code;
+select COUNT(E.emp_num) from buseo B INNER JOIN emp E ON B.buseo_code = E.buseo_code;
+
+select COUNT(E.emp_num) from buseo B INNER JOIN emp E ON B.buseo_code = E.buseo_code
+WHERE E.emp_kor_name = '홍길동';
+
+--
+1. 원하는 자료 개수 추출하기(처음 값부터 개수만큼 출력)
+정렬 fetch first 개수 rows only;
+SELECT * FROM  buseo order by buseo_code DESC
+fetch first 2 rows only;
+
+2. 원하는 위치의 자료 추출하기 : offset 건너뛰기
+정렬 offset 시작번호(0~) row fetch first 개수 rows only
+
+select * from buseo order by buseo_code desc
+offset 1 row fetch first 2 row only;
+
+
+
+---------
+maven repository
+
+dependency : 내가 알아서 다 설치함
+
+dependency 개별 추가 방벙
+
+maven repository 접속
+
+원하는 거 검색 - 복사
+<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.2.0</version>
+</dependency>
+
+start.spring.io 에서 복사
+<dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+</dependency>
+
+intellij  프로젝트의 pom.xml
+pom.xml 에 dependencies 안에 추가해주기
+
+-------------
+jsp느림 보안굿  VS   php 빠름
+
+------------
+주소 관리
+
+관리자 페이지 /admin 시작
+- 사원 목록 : /admin/empList
+
+사용자 페이지 /users 시작
+- 로그인 /users/login
+- 회원가입/users/register
+
+사이트 첫 페이지는 /web
+사이트 회사소개 /web/company
+
+
+artifact(tut00) 이름 아래에 패키지 생성
+
+controller
+- WebController
+	@RequestMapping("/web") : 공통된거 미리 설정
+	메소드 2개 (web, web/company 가는거)
+	return "파일이름";
+
+dto
+service
+mappers
+
+----
+
+model 객체 데이터 - key, value
+>web페이지에 데이터 전달하는 객체
+
+-----------
+
+tut01
+(관리자페이지 만들기)
+
+controller
+	- AdminController
+dto
+mappers
+service
+ 
+templates
+- admin : 시작
+   /admin/admin : 홈관리
+   /admin/employees : 사원관리
+   /admin/article : 게시판관리
+   /admin/site : 사이트관리
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

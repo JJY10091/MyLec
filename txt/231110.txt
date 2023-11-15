@@ -172,14 +172,14 @@ AjaxController.java
 
 http://도메인:포트번호/실행주소
 
-> defualt = 8080, 보안상 포트번호 바꿀게 application열고
+> defualt = 8080, 보안상 포트번호 바꿀게 resources > application.properties열고
 server.port = 7000~9999
 
 ------------------------------------------------------------------------------
 ajax - src - java - com.example.ajax-controller - AjaxController.java
 
 @Controller
-@GetMapping
+@GetMapping (@PostMapping)
 
 controller에서 사용된 주소 
 
