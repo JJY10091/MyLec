@@ -1,0 +1,61 @@
+select 
+
+1. controller, mappers, dto, service
+
+templates
+2. /dept/sel		-> /dept/sel.html
+
+
+static
+3. js/jquery.js
+
+
+<option value="">---부서 선택---</option>
+				<option value="100">인사과</option>
+
+
+multiple.html
+대분류, 소분류
+
+/dept/multi		-> /dept/multiple.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

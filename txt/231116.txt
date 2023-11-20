@@ -1,0 +1,209 @@
+
+denpendency - web, thy, mysql
+
+html -> db생성 -> 객체, Controller -> mappers
+
+db : emp_name
+객체 :  empName
+sping에서 자동으로 변수이름을 변환해준다 (**필요)
+
+tut05
+db사용(mysql 드라이버)
+
+
+Spring 에서 sql Query문 사용하는 방법 > mybatis ( 3 미만 버전에서는 xml 방식? )
+
+--------------------------------------------------------------------------------
+-application.properties 
+1)
+create database koreaitdb;
+
+2)
+application.properties 에서 DB 설정
+#mysql config
+
+3)
+camel표기법 컨트롤 ( _제거하고 뒤에 대문자 : emp_name => empName )
+#mybatis config
+
+
+#server.port
+server.port=8888
+
+#mysql config
+#connector, url/dbname(?옵션), id, passwd
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/koreaitdb
+spring.datasource.username=root
+spring.datasource.password=1234
+
+#mybatis config
+mybatis.configuration.map-underscore-to-camel-case=true
+
+-----------------------------------------------------------------------------------
+
+--crud 예시
+사용자 이메일, 비번 저장
+
+controller - UsersController.java
+
+templates
+/users/insert	-	/users/insert.html
+/users/list		-	/users/list.html
+
+
+
+
+***DB 작업
+static폴더에 파일생성
+db query 저장
+static/koreaitdb.sql
+
+query 문
+use koreaitdb;
+
+create table users(
+email varchar(50),
+passwd varchar(20)
+);
+
+
+*** dto객체 생성
+/dto/UserDto.java
+
+::db보니 테이블에 2개 이름있네 -> 변수 2개, lombok 안쓰니까 getter setter 생성
+
+
+***mappers 생성 // mapper - > query
+Insert하는 파일
+
+인터페이스로 : interface -> 본체가 없는 이름만 필요
+/mappers/UsersMapper.java
+인터페이스로 사용
+객체이름과 동일?
+
+@Insert("INSERT INTO users VALUES(#{}, #{})")
+public void setInsert();
+
+>values에 #{변수}
+>interface
+>@Mapper 사용(mybatis 추가)
+>쿼리문 확인
+>Dto객체로 사용해서 추가
+
+cf select제외하고 거의 다 리턴값이 없다. > void사용
+
+
+list 파일(select하는 )
+>mapper로 돌아가서
+select 하면 여러개 > list로 받자
+
+controller에서
+
+@GetMapping("")
+public String getUsers(Model model) {
+        List<UsersDto> list = um.getUsers();
+
+        model.addAttribute("userList", list); //값이 넘어간다
+
+        return "users/list";
+}
+
+------------------------------ ajax로 하는방식
+
+tut06
+
+/member			/member/list.html
+/member/add		/member/add.html
+
+/static/db.sql
+pk, 아이디, 비밀번호
+
+패키지
+- controller
+MemberController.java
+- dto
+MemberDto.java
+- service
+- mappers
+MemberMapper.java
+
+
+ajax로 tbody 만들기
+
+<tr>
+	<td>1</td>
+	<td>2</td>
+	<td>3</td>
+	<td>
+	<a href="">수정</a>
+	<a href="">삭제</a>
+	</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------
+
+thyemleaf선언문
+<html xmlns:th="http://www.thymeleaf.org">
+::뒤에 </html> 들어가면 안됨
+
+css
+position: absolute
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

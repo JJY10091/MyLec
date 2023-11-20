@@ -1,0 +1,133 @@
+Map에 실어서 보내는 이유
+서로 다른 타입의 결과값을 보낼수 있음
+
+----------------------------------
+
+Ajax - crud
+update delete : pk사용
+list : 목록, 상품수
+QueryString 방식 (? 사용)
+(delete/update)?num=1 
+
+---------------------
+Ajax, Thymeleaf
+*** crud
+
+depen - web, Thymeleaf, mysql, mybatis 
+
+쇼핑몰 - shop
+관리자
+/admin/addItem		/admin/addItem.html  *
+/admin/deleteItem		/admin/deleteItem.html
+/admin/updateItem		/admin/updateItem.html  *
+
+사용자
+/users			/users/listItem.html
+/users/viewItem		/users/viewItem.html  *
+
+
+controller
+-UsersController.java
+
+dto
+-ItemsDto
+
+mappers 인터페이스
+
+service
+
+html -> db 생성 -> 객체, controller -> (service) -> mappers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
